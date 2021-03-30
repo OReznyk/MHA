@@ -1,0 +1,105 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+My Health Aid
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='dashboard.css')}}">
+{% endblock %}
+
+{% block content %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">My Health Aid</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">להתנתק</a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="חיפוש">
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">עמוד הראשי <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">פרופיל</a></li>
+            <li><a href="#">הגדרות</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">יצירת קשר</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="research image">
+              <h4>מחקרים קודמים</h4>
+              <span class="text-muted">כמות המחקרים</span>
+            </div>
+						<div class="col-xs-6 col-sm-3 placeholder">
+							<img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="research image">
+							<h4>הודעות</h4>
+							<span class="text-muted">כמות ההודעות</span>
+						</div>
+					</div>
+
+          <h2 class="sub-header">מחקרים פעילים</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>סטטוס </th>
+                  <th>תאריך התחלה</th>
+                  <th>חוקר הראשי</th>
+                  <th>שם המחקר</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>דוגמא</td>
+                  <td>דוגמא</td>
+                  <td>דוגמא</td>
+                  <td>דוגמא</td>
+                </tr>
+                <tr>
+                  <td>דוגמא</td>
+                  <td>דוגמא</td>
+                  <td>דוגמא</td>
+                  <td>דוגמא</td>
+                </tr>
+                <tr>
+                  <td>דוגמא</td>
+                  <td>דוגמא</td>
+                  <td>דוגמא</td>
+                  <td>דוגמא</td>
+                </tr>
+                <tr>
+                  <td>דוגמא</td>
+                  <td>דוגמא</td>
+                  <td>דוגמא</td>
+                  <td>דוגמא</td>
+                </tr>
+
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
