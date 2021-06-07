@@ -1,12 +1,17 @@
-from flask import Flask, redirect, url_for
+from flask import Flask
 from flask_bootstrap import Bootstrap
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
+DB_NAME = "database.db"
 
 def create_app():
     app = Flask(__name__)
     Bootstrap(app)
     ## TODO: change before production
     app.config['SECRET_KEY'] = 'Thisissupposedtobesecret'
-
+    app.config['SQLACHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    db.init_app(app)
     # importing blueprints
     from .views import views
     from .auth import auth

@@ -16,6 +16,12 @@
   background-color: #458e7b;
   text-align: right;
 }
+
+.flashed_messages->alert{
+    text-align: right;
+    margin-top: 55px;
+    padding: 20px;
+}
 /*link to home lable */
 .navbar .navbar-brand{
   color: #fff;
@@ -90,7 +96,6 @@
    margin-top: 50px;
    padding: 20px;
  }
-
 .main {
   padding: 20px;
 }
