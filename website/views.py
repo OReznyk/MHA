@@ -4,7 +4,7 @@ views = Blueprint('views', __name__)
 
 @views.route('/')
 def home():
-    flash('zdfsdafaffga', category = 'error')
+    flash('zdfsdafaffga', category = 'info')
     return render_template('index.html')
 
 @views.route('/dashboard', methods=['GET', 'POST'])
