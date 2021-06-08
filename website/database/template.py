@@ -1,4 +1,11 @@
-class Template:
+from . import db
+
+class Template(db.Model):
+
+
+
+
+    
           def __init__(self, creator, creation_date, creation_month, creation_year,
                         file):
               self.creator = creator

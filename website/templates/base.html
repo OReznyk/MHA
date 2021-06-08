@@ -1,75 +1,79 @@
-{% extends "bootstrap/base.html" %}
+{% extends "bootstrap/base.html" %} {% block title %} My Health Aid {% endblock %} {% block styles %} {{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='base.css')}}"> {% endblock %} {% block navbar %}
+<nav class="navbar navbar-inverse">
+    <div class="container">
 
-{% block title %}
-My Health Aid
-{% endblock %}
 
-{% block styles %}
-{{super()}}
-<link rel="stylesheet" href="{{url_for('static', filename='base.css')}}">
-{% endblock %}
-
-{% block navbar %}
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
         <div class="navbar-header navbar-right">
 
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <div class="container-search">
-            {% block search %}{% endblock %}
-          </div>
-          <a class="navbar-brand" href="./">My Health Aid</a>
+            <div class="container-search">
+                {% block search %}{% endblock %}
+            </div>
+            <a class="navbar-brand" href="./">My Health Aid</a>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-left">
-            {% block collapsing_navbar %}{% endblock %}
-          </ul>
+            <ul class="nav navbar-nav navbar-left">
+
+                {% block collapsing_navbar %}
+                <li><a href="#">כניסה</a></li>
+                {% endblock %}
+            </ul>
         </div>
-      </div>
-    </nav>
 
-        {% block flashed_messages %}
-        <! ---- messages block: not ok yet----->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-            {% for category, message in messages %}
-            <! ----  if error: color = red ----->
-              {% if category == 'error' %}
-                <div class="alert alert-danger alert-dismissable fade show" role="alert">
-                    {{ message }}
-                  <button type="button" class="close" data-dismiss="alert">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                {% else %}
-                <! ----  if !error-> color = green ----->
-                  <div class="alert alert-success alert-dismissable fade show" role="alert">
-                    {{ message }}
-                    <button type="button" class="close" data-dismiss="alert">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                {% endif %}
-            {% endfor %}
-          {% endif %}
-        {% endwith %}
-        {% endblock %}
-
-    <div class="container-fluid  navbar-right">
-      <div class="row">
-        <div class="sidebar"></div>
-        {% block sidebar_content %}{% endblock %}
-      </div>
     </div>
+</nav>
 
-    <div class="container">
-      {% block main_content %}{% endblock %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-9">
+          {% block flashed_messages %}
+          <! ---- messages block: not ok yet----->
+          {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
+          <! ----  if error: color = red ----->
+          {% if category == 'error' %}
+          <div class="alert alert-danger alert-dismissable" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+          </div>
+          {% else %}
+          <! ----  if !error->color = green ----->
+          <div class="alert alert-success alert-dismissable" role="alert">
+              {{ message }}
+              <button type="button" class="close" data-dismiss="alert">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+          </div>
+          {% endif %} {% endfor %} {% endif %} {% endwith %} {% endblock %}
+            <div class="main">
+              {% block main_content %}{% endblock %}
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="sidenav">
+                {% block sidebar_content %}
+                <a href="">דף הבית</a>
+                <a href="/about">MHA אודות</a>
+
+                <a href="#university">אונברסיטת אריאל</a>
+                <a href="#contact">צור קשר</a> {% endblock %}
+            </div>
+        </div>
+
+
     </div>
+</div>
+
+
+
 
 {% endblock %}

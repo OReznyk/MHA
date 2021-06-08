@@ -19,7 +19,7 @@ class RegisterForm(FlaskForm):
     genderList = ["זכר", "נקבה"," אחר"]
 
     email = StringField('אימייל', validators=[InputRequired(), Email(message='Invalid email'), Length(max=100)])
-    firstname = StringField('שם משפחהי', validators=[InputRequired(), Length(min=2, max=50)])
+    firstname = StringField('שם משפחה', validators=[InputRequired(), Length(min=2, max=50)])
     name = StringField('שם פרטי', validators=[InputRequired(), Length(min=2, max=50)])
     gender = SelectField(u'מין', choices=genderList)
     birthdate = DateField('תאריך לידה', default=date.today())
@@ -48,5 +48,8 @@ def signup():
         if form['password'] != form['verification'] :
             flash('סיסמאות לא זהות', 'error')
         else:
+            #TODO: check permissions: create regular user for all types of permissions
+            # if not regular permission -> send to admin for change + flash msg as: user created & send for permission approval
             flash ('משתמש נוצר', 'success')
+            return redirect(url_for("user.html"))
     return render_template('signup.html', form=form)
