@@ -15,11 +15,11 @@ class LoginForm(FlaskForm):
 
 
 class RegisterForm(FlaskForm):
-    permissionsList = ["נחקר", "חוקר", "עוזר מחקר", "מהנל"]
+    permissionsList = ["נחקר", "חוקר", "עוזר מחקר", "מנהל"]
     genderList = ["זכר", "נקבה"," אחר"]
 
     email = StringField('אימייל', validators=[InputRequired(), Email(message='Invalid email'), Length(max=100)])
-    firstname = StringField('שם משפחהי', validators=[InputRequired(), Length(min=2, max=50)])
+    firstname = StringField('שם משפחה', validators=[InputRequired(), Length(min=2, max=50)])
     name = StringField('שם פרטי', validators=[InputRequired(), Length(min=2, max=50)])
     gender = SelectField(u'מין', choices=genderList)
     birthdate = DateField('תאריך לידה', default=date.today())
@@ -50,3 +50,5 @@ def signup():
         else:
             flash ('משתמש נוצר', 'success')
     return render_template('signup.html', form=form)
+
+

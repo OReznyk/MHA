@@ -1,0 +1,140 @@
+{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block styles %} {{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='base.css')}}"> {% endblock %} {% block main_content %}
+
+
+
+<h1> צור מחקר</h1>
+
+<div class="box">
+
+    <div class="flex-container">
+
+        <div style="flex-grow: 9">
+            <p>כותרת</p>
+            <input type="text" id="fname" name="fname">
+
+        </div>
+        <div class="text-center" style="flex-grow: 0.5">שכפל</div>
+        <div class="text-center" style="flex-grow: 0.5">מחק</div>
+    </div>
+</div>
+
+<div class="box">
+
+    <div class="flex-container">
+
+        <div style="flex-grow: 9">
+            <p>הוסף תמונה</p>
+            <input type="file" id="img" name="img" accept="image/*">
+
+        </div>
+        <div class="text-center" style="flex-grow: 0.5">שכפל</div>
+        <div class="text-center" style="flex-grow: 0.5">מחק</div>
+    </div>
+</div>
+
+<div class="box">
+
+    <div class="flex-container">
+
+        <div style="flex-grow: 9">
+            <p>הוסף טקסט חופשי</p>
+
+            <textarea name="message" rows="4" cols="100">
+        
+        </textarea>
+        </div>
+        <div class="text-center" style="flex-grow: 0.5">שכפל</div>
+        <div class="text-center" style="flex-grow: 0.5">מחק</div>
+    </div>
+</div>
+
+<div class="box">
+
+    <div class="flex-container">
+
+        <div style="flex-grow: 9">
+            <p>הכנס קישור ליוטוב</p>
+            <input type="text" id="fname" name="fname">
+
+        </div>
+        <div class="text-center" style="flex-grow: 0.5">שכפל</div>
+        <div class="text-center" style="flex-grow: 0.5">מחק</div>
+    </div>
+</div>
+
+<div class="box">
+
+    <div class="flex-container">
+
+        <div style="flex-grow: 9">
+            <p>כותרת</p>
+            <input type="text" id="fname" name="fname"><br><br>
+
+        </div>
+        <div class="text-center" style="flex-grow: 0.5">שכפל</div>
+        <div class="text-center" style="flex-grow: 0.5">מחק</div>
+    </div>
+</div>
+
+<form>
+
+    <label for="fname">שם המחקר:</label>
+    <input type="text" id="fname" name="fname"><br><br>
+    <label for="lname">:</label>
+    <input type="text" id="lname" name="lname"><br><br>
+    <input type="image" alt="Submit" width="48" height="48">
+
+
+    <textarea name="message" rows="10">
+  The cat was playing in the garden.
+  </textarea>
+
+    <br><br>
+
+    <label for="cars">בחר קטגוריה מתאימה:</label>
+    <select id="cars" name="cars">
+    <option value="volvo">בריאות</option>
+    <option value="saab">פסיכולגיה</option>
+    <option value="fiat">Fiat</option>
+    <option value="audi">Audi</option>
+  </select>
+    <br><br>
+    <label for="img">נא העלה תמונה:</label>
+    <input type="file" id="img" name="img" accept="image/*">
+
+</form>
+
+
+<style>
+    .box {
+        margin: 20px 0;
+    }
+    
+    .flex-container {
+        display: flex;
+        align-items: stretch;
+        background-color: #9e9e9e9e;
+        border: 2px solid #458e7b;
+        margin: 5px auto;
+    }
+    
+    .flex-container>div {
+        color: #000000;
+        line-height: 45px;
+        font-size: 13px;
+        border: 1px solid #458e7b;
+        padding: 5px;
+    }
+    
+    .box input,
+    .box textarea {
+        width: 96%;
+        background-color: rgb(158 158 158 / 42%);
+        font-size: 20px;
+        text-align: right;
+        margin: 0 auto;
+        border: 1px solid #458e7b;
+    }
+</style>
+{% endblock %}
