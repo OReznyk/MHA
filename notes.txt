@@ -1,0 +1,57 @@
+			Bcrypt
+
+	from flask_bcrypt import Bcrypt
+	bcrypt = Bcrypt(app)
+	hashed_pwd = bcrypt.generate_password_hash('pwd').decode('utf-8')
+	to check pwd: bcrypt.check_password_hash(hashed_pwd, 'pwd')
+
+			SQL
+
+		create db:
+	go to cmd cd /dir of proj
+	type:	
+		from proj_name import db
+		db.create_all()
+
+		create tables in db
+	go to cmd cd /dir of proj
+	type:	
+		from proj_name import tables_names
+
+		add user to db:
+	u = User(user`s_data)
+	db.session.add(u)
+	db.commit()
+
+		check if user exists:
+	found_user = User.query.filter_by(name=user_name).first()
+
+		get all users:
+	users.query.all()
+
+
+			SESSION
+		
+		set lifetime:
+	from datetime import timedelta
+	app.permanent_session_lifetime = timedelte(days/minutes = how_much?)
+
+		set permanent session:
+	session.permanent = True
+	TIP: if not set as permanent it exists untill user in the browser
+
+		store data in session:
+	session["data_name"] = data
+
+		check if user in session:
+	if "user" in session
+		
+		retrive session data:
+	user= session["user"]
+		
+		clear session from user:
+	session.pop("user", None)
+
+
+
+	request.form["form"]

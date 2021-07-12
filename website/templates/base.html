@@ -29,11 +29,11 @@
 
 <div class="container-fluid col-sm-12">
     <div class="row">
-        <div class="col-sm-8">
-          <! ----  block for flashed messages ----->
+        <div class="col-sm-10">
+          <!--  block for flashed messages -->
           {% block flashed_messages %}
           {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
-          <! ----  if error: color = red ----->
+          <!--  if error: color = red -->
           {% if category == 'error' %}
           <div class="alert alert-danger alert-dismissable" role="alert">
               {{ message }}
@@ -49,7 +49,7 @@
             </button>
           </div>
           {% else %}
-          <! ----  if !error->color = green ----->
+          <!--  if !error->color = green -->
           <div class="alert alert-success alert-dismissable" role="alert">
               {{ message }}
               <button type="button" class="close" data-dismiss="alert">
@@ -62,7 +62,7 @@
             </div>
         </div>
 
-            <div class="sidenav col-sm-4">
+            <div class="sidenav col-sm-5 navbar-right">
                 {% block sidebar_content %}
                 <a href="">דף הבית</a>
                 <a href="/about">MHA אודות</a>
