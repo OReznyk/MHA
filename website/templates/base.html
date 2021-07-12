@@ -19,7 +19,7 @@
             <ul class="nav navbar-nav navbar-left">
 
                 {% block collapsing_navbar %}
-                <li><a href="#">כניסה</a></li>
+                <li><a href="{{ url_for('auth.login') }}">כניסה</a></li>
                 {% endblock %}
             </ul>
         </div>
@@ -64,11 +64,10 @@
 
             <div class="sidenav col-sm-5 navbar-right">
                 {% block sidebar_content %}
-                <a href="">דף הבית</a>
-                <a href="/about">MHA אודות</a>
-
-                <a href="#university">אונברסיטת אריאל</a>
-                <a href="#contact">צור קשר</a> {% endblock %}
+                <a href="{{ url_for('views.home') }}">דף הבית</a>
+                <a href="{{ url_for('views.about') }}">MHA אודות</a>
+                <a href="https://www.ariel.ac.il/wp/">אונברסיטת אריאל</a>
+                <a href="{{ url_for('views.contact') }}">צור קשר</a> {% endblock %}
             </div>
 
 

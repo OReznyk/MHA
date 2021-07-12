@@ -16,7 +16,3 @@ class Article(db.Model):
 
     def __repr__(self):
         return f"Article('{self.title}', '{self.author}', '{self.creation_date}')"
-
-
-db.create_all()
-db.session.commit()

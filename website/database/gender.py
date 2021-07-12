@@ -6,7 +6,3 @@ class Gender(db.Model):
 
     def __repr__(self):
         return f"Gender('{self.gender}')"
-
-
-db.create_all()
-db.session.commit()

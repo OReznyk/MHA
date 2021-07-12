@@ -9,3 +9,11 @@ def home():
 @views.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
     return render_template("dashboard.html")
+
+@views.route('/contact', methods=['GET', 'POST'])
+def contact():
+    return render_template("contact_us.html")
+
+@views.route('/about')
+def about():
+    return render_template("about.html")

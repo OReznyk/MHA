@@ -3,15 +3,20 @@ from flask_bootstrap import Bootstrap
 from website.forms import RegistrationForm, LoginForm
 from website import app, db, bcrypt
 from website.database.user import User
-from flask_login import login_user
-
+from flask_login import login_user, logout_user, current_user
 from flask_sqlalchemy import SQLAlchemy
 
 auth = Blueprint('auth', __name__)
 
-
+'''
+    Login function redirects to dashboard.html after authentication
+'''
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
+    #if user already loged in -> logout to login
+    if current_user.is_authenticated:
+        flash ('חייבים להתנתק בכדי להכנס מחדש', 'error')
+        return redirect(url_for("views.dashboard"))
     form = LoginForm()
     if form.validate_on_submit():
         # Get user from db
@@ -24,9 +29,16 @@ def login():
             flash ('הוכנסו נתונים לא נכונים', 'error')
     return render_template('login.html', form=form)
 
-
+'''
+    Signup function redirects to:
+                1. dashboard.html if user is_authenticated
+                2. login.html if user created successfuly
+'''
 @auth.route('/signup', methods=['GET', 'POST'])
 def signup():
+    if current_user.is_authenticated:
+        flash ('בבקשה תתנתקו לצורך רישום משתמש חדש', 'error')
+        return redirect(url_for("views.dashboard"))
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_pwd = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -47,3 +59,11 @@ def signup():
         return redirect(url_for("auth.login"))
 
     return render_template('signup.html', form=form)
+
+'''
+    Logout function redirects to home page
+'''
+@auth.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for("views.home"))
