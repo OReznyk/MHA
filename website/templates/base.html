@@ -19,7 +19,12 @@
             <ul class="nav navbar-nav navbar-left">
 
                 {% block collapsing_navbar %}
-                <li><a href="{{ url_for('auth.login') }}">כניסה</a></li>
+                {% if current_user.is_authenticated %}
+                  <li><a href="{{ url_for('auth.logout') }}">להתנתק</a></li>
+                {% else %}
+                  <li><a href="{{ url_for('auth.login') }}">כניסה</a></li>
+                  <li><a href="{{ url_for('auth.signup') }}">הרשמה</a></li>
+                {% endif %}
                 {% endblock %}
             </ul>
         </div>
@@ -41,6 +46,7 @@
                               <span aria-hidden="true">&times;</span>
                             </button>
           </div>
+          <!--  if error: color = blue -->
           {% elif category == 'info' %}
           <div class="alert alert-info alert-dismissable" role="alert" >
             {{ message }}

@@ -3,7 +3,7 @@ from flask_bootstrap import Bootstrap
 from website.forms import RegistrationForm, LoginForm
 from website import app, db, bcrypt
 from website.database.user import User
-from flask_login import login_user, logout_user, current_user
+from flask_login import login_user, logout_user, current_user, login_required
 from flask_sqlalchemy import SQLAlchemy
 
 auth = Blueprint('auth', __name__)
@@ -17,17 +17,21 @@ def login():
     if current_user.is_authenticated:
         flash ('חייבים להתנתק בכדי להכנס מחדש', 'error')
         return redirect(url_for("views.dashboard"))
-    form = LoginForm()
-    if form.validate_on_submit():
-        # Get user from db
-        user = User.query.filter_by(email=form.email.data).first()
-        # Checking pwd
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user, remember=form.remember.data)
-            return redirect(url_for('views.dashboard'))
-        else:
-            flash ('הוכנסו נתונים לא נכונים', 'error')
-    return render_template('login.html', form=form)
+
+    else:
+        form = LoginForm()
+        if form.validate_on_submit():
+            # Get user from db
+            user = User.query.filter_by(email=form.email.data).first()
+            # Checking pwd
+            if user and bcrypt.check_password_hash(user.password, form.password.data):
+                login_user(user, remember=form.remember.data)
+                #if user get here from page that needed authentication -> redirect to that page
+                next_page = request.args.get('next')
+                return redirect(next_page) if next_page else (url_for('views.dashboard'))
+            else:
+                flash ('הוכנסו נתונים לא נכונים', 'error')
+        return render_template('login.html', form=form)
 
 '''
     Signup function redirects to:

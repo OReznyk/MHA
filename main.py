@@ -1,10 +1,10 @@
-from website import create_app
+from website import app
 
 """
 created by Olga Reznyk
 """
 
-app = create_app()
+#app = create_app()
 
 if __name__ == '__main__':
     # TODO: WARNING!!!! Turn off debug option before production !!!!!!!
