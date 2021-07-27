@@ -17,20 +17,27 @@ Bootstrap(app)
 
 
 def init_database():
-        #from website.database.answer import Answer
-        #from website.database.article import Article
-        #from website.database.gender import Gender
-        #from website.database.permissions import Permission
-        #from website.database.question import Question
-        #from website.database.research import Research
-        #from website.database.template import Template
+
         from website.database.user import User
+        from website.database.permissions import Permissions
+        from website.database.gender import Gender
+
+        # Default init for permissions #
+        perm = ["נחקר", "חוקר", "עוזר מחקר", "מהנל"]
+        for p in perm:
+            permission = Permissions(permission = p)
+            db.session.add(permission)
+
+        # Default init for gender #
+        gen = ["זכר", "נקבה"," אחר"]
+        for g in gen:
+            gender = Gender(gender = g)
+            db.session.add(gender)
 
         db.create_all()
         db.session.commit()
-        return 0
 
-init_database()
+
 
 def create_app():
     ## TODO: change before production

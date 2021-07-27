@@ -4,6 +4,9 @@ from wtforms.validators import InputRequired, Email, Length, EqualTo, Validation
 from wtforms.fields.html5 import DateField
 from datetime import date
 from website.database.user import User
+from website.database.permissions import Permissions
+from website.database.gender import Gender
+
 
 class LoginForm(FlaskForm):
     email = StringField('אימייל', validators=[InputRequired(), Email(message='Invalid email'), Length(max=50)])
@@ -14,8 +17,8 @@ class LoginForm(FlaskForm):
 
 class RegistrationForm(FlaskForm):
     # TODO: change it to pull from table
-    permissionsList = ["נחקר", "חוקר", "עוזר מחקר", "מהנל"]
-    genderList = ["זכר", "נקבה"," אחר"]
+    genderList = Gender.query.all()
+    permissionsList = Permissions.query.all()
 
     email = StringField('אימייל', validators=[InputRequired(), Email(message='Invalid email'), Length(max=100)])
     firstname = StringField('שם משפחה', validators=[InputRequired(), Length(min=2, max=50)])
