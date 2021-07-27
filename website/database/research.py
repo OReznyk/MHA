@@ -1,15 +1,16 @@
-from . import db
+from website import db
 from sqlalchemy.sql import func
+from . import question, answer, user, template, response
 
 class Research(db.Model):
-    _id = db.Column("id", db.Integer, primary_key=True)
+    id = db.Column("id", db.Integer, primary_key=True)
     title = db.Column(db.String(150))
     content = db.Column(db.Text, nullable=False)
-    main_researchers = db.Column(db.Integer, db.ForeignKey('user.id'))
-    assistants = db.Column(db.Integer, db.ForeignKey('user.id'))
-    participants = db.Column(db.Integer, db.ForeignKey('user.id'))
+    researchers = db.Column(db.Integer, db.ForeignKey('user.id'))
+    #assistants = db.Column(db.Integer, db.ForeignKey('user.id'))
     template = db.Column(db.Integer, db.ForeignKey('template.id'))
-    questions = db.relationship('question', backref='author', lazy=True)
+    questions = db.relationship('Question', backref='author', lazy=True)
+    participants_answers = db.relationship('Response', backref='research_responses', lazy=True)
     creation_date = db.Column(db.DateTime(timezone=True), default=func.now())
 
 
