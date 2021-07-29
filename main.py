@@ -1,11 +1,11 @@
-from website import create_app
+from website import app
 
 """
 created by Olga Reznyk
 """
 
-app = create_app()
+#app = create_app()
 
 if __name__ == '__main__':
-    # TODO: Turn off debug option before production
+    # TODO: WARNING!!!! Turn off debug option before production !!!!!!!
     app.run( debug  = True)

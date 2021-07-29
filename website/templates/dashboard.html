@@ -8,12 +8,12 @@
 
 {% block collapsing_navbar %}
 <ul class="nav navbar-nav navbar-right">
-  <li><a href="#">להרשם</a></li>
+  <li><a href="{{ url_for('auth.logout') }}">להתנתק</a></li>
 </ul>
 {% endblock %}
 
 {% block sidebar_content %}
-<li class="active"><a href="#">עמוד הראשי <span class="sr-only">(current)</span></a></li>
+<li class="active"><a href="{{ url_for('views.home') }}">עמוד הראשי <span class="sr-only">(current)</span></a></li>
 <li><a href="#">פרופיל</a></li>
 <li><a href="#">הגדרות</a></li>
 </ul>
