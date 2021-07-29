@@ -5,4 +5,4 @@ class Gender(db.Model):
     gender = db.Column(db.String(50), unique=True)
 
     def __repr__(self):
-        return f"Gender('{self.gender}')"
+        return f"{self.gender}"
