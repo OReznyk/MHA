@@ -39,6 +39,11 @@
     color: #fff;
 }
 
+.img-left {
+    width: 40%;
+    float: left;
+}
+
 
 /*
  * Sidebar
@@ -163,4 +168,10 @@
 
 .sidenav a:hover {
     color: #064579;
+}
+
+.alert-success {
+    text-align: center;
+    width: 50%;
+    margin-left: 48%;
 }
