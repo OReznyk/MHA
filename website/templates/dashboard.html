@@ -55,36 +55,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>דוגמא</td>
-          <td>דוגמא</td>
-          <td>דוגמא</td>
-          <td>דוגמא</td>
-          <td>דוגמא</td>
-        </tr>
-        <tr>
-          <td>דוגמא</td>
-          <td>דוגמא</td>
-          <td>דוגמא</td>
-          <td>דוגמא</td>
-          <td>דוגמא</td>
-        </tr>
-        <tr>
-          <td>דוגמא</td>
-          <td>דוגמא</td>
-          <td>דוגמא</td>
-          <td>דוגמא</td>
-          <td>דוגמא</td>
-        </tr>
-        <tr>
-          <td>דוגמא</td>
-          <td>דוגמא</td>
-          <td>דוגמא</td>
-          <td>דוגמא</td>
-          <td>דוגמא</td>
-        </tr>
-
-
+        {% for item in values %}
+          <p>Name:{{item.first_name}}, Last_name:{{item.last_name}}, Email: {{item.email}}</p>
+        {% endfor %}
       </tbody>
     </table>
   </div>
