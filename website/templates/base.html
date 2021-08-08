@@ -1,6 +1,7 @@
 {% extends "bootstrap/base.html" %} {% block title %} My Health Aid {% endblock %} {% block styles %} {{super()}}
 <link rel="stylesheet" href="{{url_for('static', filename='base.css')}}"> {% endblock %} {% block navbar %}
 <nav class="navbar navbar-inverse">
+
     <div class="container  col-sm-12">
         <div class="navbar-header navbar-right">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -12,20 +13,18 @@
             <div class="container-search">
                 {% block search %}{% endblock %}
             </div>
-            <a class="navbar-brand" href="./">My Health Aid</a>
+            <a class="navbar-brand" href="./">My Health Aid     <img src="../static/logo-mha.png"   class="logo img-responsive" alt="logo"> </a>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-left">
 
-                {% block collapsing_navbar %}
-                {% if current_user.is_authenticated %}
-                  <li><a href="{{ url_for('auth.logout') }}">להתנתק</a></li>
+                {% block collapsing_navbar %} {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('auth.logout') }}">להתנתק</a></li>
                 {% else %}
-                  <li><a href="{{ url_for('auth.login') }}">כניסה</a></li>
-                  <li><a href="{{ url_for('auth.signup') }}">הרשמה</a></li>
-                {% endif %}
-                {% endblock %}
+                <li><a href="{{ url_for('auth.login') }}">כניסה</a></li>
+                <li><a href="{{ url_for('auth.signup') }}">הרשמה</a></li>
+                {% endif %} {% endblock %}
             </ul>
         </div>
 
@@ -34,53 +33,90 @@
 
 <div class="container-fluid col-sm-12">
     <div class="row">
-        <div class="col-sm-10">
-          <!--  block for flashed messages -->
-          {% block flashed_messages %}
-          {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
-          <!--  if error: color = red -->
-          {% if category == 'error' %}
-          <div class="alert alert-danger alert-dismissable" role="alert">
-              {{ message }}
-              <button type="button" class="close" data-dismiss="alert">
+        <div class="col-sm-9">
+            <!--  block for flashed messages -->
+            {% block flashed_messages %} {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
+            <!--  if error: color = red -->
+            {% if category == 'error' %}
+            <div class="alert alert-danger alert-dismissable" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert">
                               <span aria-hidden="true">&times;</span>
                             </button>
-          </div>
-          <!--  if error: color = blue -->
-          {% elif category == 'info' %}
-          <div class="alert alert-info alert-dismissable" role="alert" >
-            {{ message }}
-            <button type="button" class="close" data-dismiss="alert">
+            </div>
+            <!--  if error: color = blue -->
+            {% elif category == 'info' %}
+            <div class="alert alert-info alert-dismissable" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert">
                 <span aria-hidden="true">&times;</span>
             </button>
-          </div>
-          {% else %}
-          <!--  if !error->color = green -->
-          <div class="alert alert-success alert-dismissable" role="alert">
-              {{ message }}
-              <button type="button" class="close" data-dismiss="alert">
+            </div>
+            {% else %}
+            <!--  if !error->color = green -->
+            <div class="alert alert-success alert-dismissable" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert">
                 <span aria-hidden="true">&times;</span>
               </button>
-          </div>
-          {% endif %} {% endfor %} {% endif %} {% endwith %} {% endblock %}
+            </div>
+            {% endif %} {% endfor %} {% endif %} {% endwith %} {% endblock %}
             <div class="main">
-              {% block main_content %}{% endblock %}
+                {% block main_content %}
+
+
+                <h1>
+
+                    מערכת תומכת המסייעת בקבלת החלטות </h1>
+                <img src="../static/mha2.png" class="img_top img-responsive" alt="">
+                <p> תודה על הצטרפות למחקר
+                    <br> על מנת לראות את השאלון שלך יש להירשם / להיכנס למערכת
+                    <br> אנו מקווים שתפיקו את המירב במערכת
+                </p>
+
+
+                <img src="../static/1.jpeg" class="img_main img-responsive" alt=""> {% endblock %}
             </div>
         </div>
 
-            <div class="sidenav col-sm-5 navbar-right">
-                {% block sidebar_content %}
-                <a href="{{ url_for('views.home') }}">דף הבית</a>
-                <a href="{{ url_for('views.about') }}">MHA אודות</a>
-                <a href="https://www.ariel.ac.il/wp/">אונברסיטת אריאל</a>
-                <a href="{{ url_for('views.contact') }}">צור קשר</a> {% endblock %}
-            </div>
+        <div class="sidenav col-sm-3 navbar-right">
+            {% block sidebar_content %}
+            <a href="{{ url_for('views.home') }}">דף הבית</a>
+            <a href="{{ url_for('views.about') }}">MHA אודות</a>
+            <a href="https://www.ariel.ac.il/wp/" target="_blank">אונברסיטת אריאל</a>
+            <a href="{{ url_for('views.contact') }}">צור קשר</a> {% endblock %}
+        </div>
 
 
     </div>
 </div>
 
-
+<style>
+    .main .img_main {
+        width: 75%;
+    }
+    
+    .main .img_top {
+        width: 20%;
+        float: left;
+    }
+    
+    .main p {
+        font-size: 15px;
+        line-height: 1.5;
+        margin-bottom: 30px;
+    }
+    
+    .navbar-brand {
+        float: none;
+    }
+    
+    .navbar .navbar-brand .logo {
+        display: inline-block !important;
+        margin-left: 14px;
+        width: 50px;
+    }
+</style>
 
 
 {% endblock %}

@@ -9,6 +9,11 @@ views = Blueprint('views', __name__)
 def home():
     return render_template('index.html')
 
+
+@views.route('/ContactResearch')
+def ContactResearch():
+    return render_template("ContactResearch.html")
+
 @views.route('/contact', methods=['GET', 'POST'])
 def contact():
     return render_template("contact_us.html")
@@ -28,8 +33,11 @@ def dashboard():
 def profile():
     return render_template("profile.html")
 
+<<<<<<< HEAD:website/routes/views.py
 def delete_user():
     if "user" in session:
         User.query.filter_by(id=session["user"].id).delete()
         flash ('משתמש נמחק בהצלחה', 'success')
         return redirect(url_for("view/home"))
+=======
+>>>>>>> 2c632412721178a32bea50bad7dd83fbc5c7d104:website/views.py

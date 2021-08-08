@@ -1,0 +1,22 @@
+{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block styles %} {{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='base.css')}}"> {% endblock %}{% block main_content %}
+
+
+<img src="../static/mha.png" class="img-left img-responsive" alt="">
+<h1>נשמח לשמוע... </h1>
+<br>
+<div class="">
+    <p>צרו איתנו קשר ונחזור אליכם בהקדם</p>
+    <p><span class="glyphicon glyphicon-map-marker"></span> ד"ר יוליה מחלקת סיעוד- אונברסיטת אריאל</p>
+    <p><span class="glyphicon glyphicon-phone"></span> 03-9060666</p>
+    <p><span class="glyphicon glyphicon-envelope"></span> myemail@something.com</p>
+</div>
+
+<style>
+    .img-left {
+        width: 40%;
+        margin-right: 60%;
+    }
+</style>
+
+{% endblock %}
