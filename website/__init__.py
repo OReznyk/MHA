@@ -48,8 +48,8 @@ def create_app():
     # creating database
     init_database()
     # importing blueprints
-    from .views import views
-    from .auth import auth
+    from website.routes.views import views
+    from website.routes.auth import auth
 
     # register blueprints
     app.register_blueprint(views, url_prefix='/')
