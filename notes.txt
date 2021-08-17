@@ -9,13 +9,13 @@
 
 		create db:
 	go to cmd cd /dir of proj
-	type:	
+	type:
 		from proj_name import db
 		db.create_all()
 
 		create tables in db
 	go to cmd cd /dir of proj
-	type:	
+	type:
 		from proj_name import tables_names
 
 		add user to db:
@@ -31,7 +31,7 @@
 
 
 			SESSION
-		
+
 		set lifetime:
 	from datetime import timedelta
 	app.permanent_session_lifetime = timedelte(days/minutes = how_much?)
@@ -45,13 +45,22 @@
 
 		check if user in session:
 	if "user" in session
-		
+
 		retrive session data:
 	user= session["user"]
-		
+
 		clear session from user:
 	session.pop("user", None)
 
 
 
 	request.form["form"]
+
+
+     # Default init for permissions #
+    perm = ["נחקר", "חוקר", "עוזר מחקר", "מהנל"]
+    for p in perm:
+        permission = Permissions(permission = p)
+        db.session.add(permission)
+
+

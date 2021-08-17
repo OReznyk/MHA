@@ -3,9 +3,9 @@ from wtforms import StringField, PasswordField, BooleanField, SelectField, Submi
 from wtforms.validators import InputRequired, Email, Length, EqualTo, ValidationError
 from wtforms.fields.html5 import DateField
 from datetime import date
-from website.database.user import User
-from website.database.permissions import Permissions
-from website.database.gender import Gender
+from website.models.user import User
+from website.models.permissions import Permissions
+from website.models.gender import Gender
 
 
 class LoginForm(FlaskForm):
