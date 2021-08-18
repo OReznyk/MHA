@@ -8,15 +8,13 @@ from flask_sqlalchemy import SQLAlchemy
 
 auth = Blueprint('auth', __name__)
 
+
 '''
     Login function redirects to dashboard.html after authentication
 '''
-
-
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-    form = LoginForm()
-    '''    # if user already loged in -> logout to login
+    # if user already loged in -> logout to login
     if current_user.is_authenticated:
         flash('חייבים להתנתק בכדי להכנס מחדש', 'error')
         return redirect(url_for("views.dashboard"))
@@ -28,13 +26,13 @@ def login():
             # Checking pwd
             if user and bcrypt.check_password_hash(user.password, form.password.data):
                 login_user(user, remember=form.remember.data)
-                session.permanent = True
-                session['user'] = user
+                #session.permanent = True
+                #session['user'] = user
                 # if user get here from page that needed authentication -> redirect to that page
                 next_page = request.args.get('next')
-                return redirect(next_page) if next_page else (url_for('views.dashboard'))
+                return redirect(next_page) if next_page else redirect(url_for('views.dashboard'))
             else:
-                flash('הוכנסו נתונים לא נכונים', 'error')'''
+                flash('הוכנסו נתונים לא נכונים', 'error')
     return render_template('login.html', form=form)
 
 '''
@@ -46,8 +44,7 @@ def login():
 
 @auth.route('/signup', methods=['GET', 'POST'])
 def signup():
-    form = RegistrationForm()
-    '''if current_user.is_authenticated:
+    if current_user.is_authenticated:
         flash('בבקשה תתנתקו לצורך רישום משתמש חדש', 'error')
         return redirect(url_for("views.dashboard"))
     form = RegistrationForm()
@@ -65,10 +62,9 @@ def signup():
         flash('משתמש נוצר בהצלחה', 'success')
         # TODO: send email verificathion if needed
         # TODO: redirect to verification page/popup?
-        return redirect(url_for("auth.login"))'''
+        return redirect(url_for("auth.login"))
 
     return render_template('signup.html', form=form)
-
 
 '''
     Logout function redirects to home page

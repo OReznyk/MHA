@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, flash
 from flask_login import login_required
 from ..extensions import bcrypt
 from website.models.user import User
-#from auth import current_user
+from website.models.permissions import Permissions
 
 views = Blueprint('views', __name__)
 
@@ -26,8 +26,8 @@ def about():
 @views.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    #TODO: define permissions cond
-    permission = Permissions.query.filter_by(id = User.query.filter_by(id=user.id).first().permission).first()
+    '''#TODO: define permissions cond
+    permission = Permissions.query.filter_by(id=User.query.filter_by(id=current_user.id).first().permission).first()
     if(permission == 'מנהל'):
         return render_template("dashboard.html", value = User.query.all())
     elif(permission == 'נחקר'):
@@ -35,7 +35,7 @@ def dashboard():
         return render_template("dashboard.html", value = Research.query.all())
     elif(permission == 'חוקר' or permission == 'עוזר מחקר'):
         return render_template("dashboard.html", value = Research.query.filter_by(researchers=User.query.filter_by(id=user.id).first().researches).all())
-    else: flash('הרשאות לא הוגדרו', 'error')
+    else: flash('הרשאות לא הוגדרו', 'error')'''
     return render_template("dashboard.html")
 
 @views.route('/profile')
