@@ -1,0 +1,13 @@
+{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block styles %} {{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='base.css')}}"> {% endblock %}
+
+{% block main_content %}{% endblock %}
+
+{% block sidebar_content %}
+<input type="text" id="text" a href="">טקסט</a>
+<a href="">טבלה</a>
+<a href="">תמונה</a>
+<a href="">סרטון</a>
+<a href="">קישור</a>
+<a href="">כפתור</a>
+<input type="checkbox" a href="">קבוצת הכפתורים</a>{% endblock %}
