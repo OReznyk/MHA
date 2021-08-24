@@ -56,11 +56,4 @@
 
 	request.form["form"]
 
-
-     # Default init for permissions #
-    perm = ["נחקר", "חוקר", "עוזר מחקר", "מהנל"]
-    for p in perm:
-        permission = Permissions(permission = p)
-        db.session.add(permission)
-
-
+    to retuurn json with flask watch this https://www.youtube.com/watch?v=Up5Gm_Ls2oQ&list=RDCMUCFB0dxMudkws1q8w5NJEAmw&index=5&ab_channel=Codemy.com
