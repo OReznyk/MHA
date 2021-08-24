@@ -34,20 +34,7 @@
   <h2 class="sub-header">מחקרים פעילים</h2>
   <div class="table-responsive">
     <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>ניהול</th>
-          <th>סטטוס</th>
-          <th>תאריך התחלה</th>
-          <th>חוקר הראשי</th>
-          <th>שם המחקר</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for item in values %}
-          <p>Name:{{item.first_name}}, Last_name:{{item.last_name}}, Email: {{item.email}}</p>
-        {% endfor %}
-      </tbody>
+            {{ table }}
     </table>
   </div>
 </div>
