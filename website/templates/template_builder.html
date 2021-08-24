@@ -1,45 +1,247 @@
 {% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block styles %} {{super()}}
-<link rel="stylesheet" href="{{url_for('static', filename='base.css')}}"> {% endblock %}
+<link rel="stylesheet" href="{{url_for('static', filename='base.css')}}"> {% endblock %} {% block main_content %}{% endblock %} {% block sidebar_content %}
 
-{% block main_content %}{% endblock %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-{% block sidebar_content %}
-<div class="table-responsive">
-    <table class="table table-str">
-        <tr>
-            <td>
-                <a href="">טקסט</a>
-            </td>
-            <td>
-                <a href="">תמונה</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="">סרטון</a>
-            </td>
-            <td>
-                <a href="">תשובות</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="">טבלה</a>
-            </td>
-            <td>
-                <a href="">תצוגה</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a href="">שמירה</a>
-            </td>
-            <td>
-                <a href="">הגשה</a>
-            </td>
-        </tr>
-    </table>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css" rel="stylesheet" type="text/css" />
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src=" https://unpkg.com/sweetalert/dist/sweetalert.min.js ">
+</script>
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script src="js/jscript.js" type="text/javascript"></script>
+
+<script>
+    $(document).ready(function() {
+        var i = 0;
+
+
+
+        $("#title").click(function() {
+            swal("הכנס כותרת:", {
+                    content: "input",
+                })
+                .then((value) => {
+                    i++;
+                    $(".section2").append("<div class='element' id='el-" + i + "'><h2>" + value + "</h2>    <div class='edit'> <button> שכפל</button> <button class='delete' onclick='delete_e(this)'> מחק</button>  </div></div>");
+
+                });
+        });
+
+        $("#text").click(function() {
+            (async() => {
+
+                const {
+                    value: text
+                } = await Swal.fire({
+                    input: 'textarea',
+                    inputLabel: 'הכנס טקסט',
+                    inputPlaceholder: 'הקלד טקסט ארוך...',
+                    inputAttributes: {
+                        'aria-label': 'הקלד טקסט ארוך'
+                    },
+                    showCancelButton: true
+                })
+
+                if (text) {
+                    i++;
+                    $(".section2").append("<div class='element id='el-" + i + "'><p>" + text + "</p>    <div class='edit'> <button> שכפל</button> <button class='delete' onclick='delete_e(this)'> מחק</button>  </div></div>");
+                }
+
+            })()
+
+        });
+
+        $("#url").click(function() {
+            (async() => {
+
+                const {
+                    value: url
+                } = await Swal.fire({
+                    input: 'url',
+                    inputLabel: ' הכנס כתובות יוטוב צריך להראות כך: https://www.youtube.com/embed/U2X4Rt8pyXg',
+                    inputPlaceholder: 'Enter the URL'
+                })
+
+                if (url) {
+                    i++;
+                    $(".section2").append("<div class='element id='el-" + i + "'><iframe width='560' height='315' src='" + url + "'> </iframe>    <div class='edit'> <button> שכפל</button> <button class='delete' onclick='delete_e(this)'> מחק</button>  </div></div>");
+
+
+
+                }
+
+            })()
+
+        });
+
+        $("#image").click(function() {
+            (async() => {
+                i++;
+                $(".section2").append("<div class='element id='el-" + i + "'><img src='' id='imgshow' ><br><input type='file' id='imgload' ><div class='edit'> <button> שכפל</button> <button class='delete' onclick='delete_e(this)'> מחק</button>  </div></div>");
+
+
+
+            })()
+        });
+
+        // $("#imgload").change(function() {
+        //     if (this.files && this.files[0]) {
+        //         var reader = new FileReader();
+        //         reader.onload = function(e) {
+        //             $('#imgshow').attr('src', e.target.result);
+        //         }
+        //         reader.readAsDataURL(this.files[0]);
+        //     }
+        // });
+
+        $("#save").click(function() {
+
+            swal({
+                // position: 'top-end',
+                icon: 'success',
+                title: 'השאלון נשמר',
+                showConfirmButton: false,
+                timer: 2200
+            })
+
+        });
+
+
+    });
+
+    function delete_e(e) {
+
+
+
+        swal({
+                title: "למחוק בטוח?",
+                text: "לאחר שנמחק, לא תוכל לשחזר את האלמנט הזה!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+
+                    $(e).parents(".element").remove();
+                }
+            });
+
+    }
+</script>
+
+</head>
+
+
+
+<div class="container">
+
+    <div class="row">
+        <h1> צור מחקר</h1>
+
+
+
+        <div class="col-md-2 section1">
+            <button type="button" class="btn btn-primary" id="title"> כותרת</button>
+            <button type="button" class="btn btn-primary" id="text"> תיבת טקסט </button>
+            <button type="button" class="btn btn-primary" id="image">  תמונה</button>
+            <button type="button" class="btn btn-primary" id="url">  סרטון</button>
+            <button type="button" class="btn btn-primary" id="question">  שאלת בחירה</button>
+
+
+
+        </div>
+        <div class="col-md-10 section2">
+
+            <label for="categorys">בחר קטגוריה מתאימה:</label>
+            <select id="categorys" name="categorys">
+            <option value="בריאות">בריאות</option>
+            <option value="פסיכולגיה">פסיכולגיה</option>
+            <option value="אבחנה">אבחנה</option>
+            <option value="תרופות הקלה">תרופות הקלה</option>
+          </select>
+        </div>
+
+    </div>
 </div>
+
+<button type="button" id="save" class="btn btn-success">שמור שאלון</button>
+
+
+<style>
+    .swal2-container.swal2-center>.swal2-popup {
+        width: 50%;
+        font-size: 15px;
+    }
+    
+    .section1 button {
+        display: block;
+        margin: 10px;
+        width: 100%;
+        padding: 10px;
+    }
+    
+    .section2 {
+        margin: 0 auto;
+        color: #000000;
+    }
+    
+    .box {
+        margin: 20px 0;
+        padding: 20px;
+        background-color: #cee3d86b;
+        border-radius: 18px;
+        text-align: right;
+    }
+    
+    .delete {
+        color: #cb2b2b;
+        background-color: transparent;
+        border: 1px solid #cb2b2b;
+    }
+    
+    select {
+        width: 75%;
+    }
+    
+    #img_url {
+        background: #ddd;
+        width: 100px;
+        height: 90px;
+        display: block;
+    }
+    
+    .element {
+        margin: 15px auto;
+    }
+    
+    .box input,
+    .box textarea,
+    .box select {
+        width: 96%;
+        min-height: 40px;
+        font-size: 16px;
+        text-align: right;
+        margin: 0 auto;
+        /* border: 1px solid #458e7b; */
+    }
+    
+    .edit {
+        visibility: hidden;
+    }
+    
+    .element:hover .edit {
+        visibility: visible;
+    }
+</style>
+
+
 {% endblock %}
 <div>
 
