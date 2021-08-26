@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, flash
-from flask_login import login_required
-from ..extensions import bcrypt
-from website.models.user import User, UserTable
+from flask_login import login_required, current_user
+from ..extensions import session
+from website.models.user import User
 from website.models.permissions import Permissions
 
 views = Blueprint('views', __name__)
@@ -11,22 +11,26 @@ def home():
     return render_template('index.html')
 
 
-@views.route('/contactResearch')
-def ContactResearch():
-    return render_template("ContactResearch.html")
+@views.route('/builder')
+def builder():
+    return render_template("template_builder.html")
+
 
 @views.route('/contact', methods=['GET', 'POST'])
 def contact():
     return render_template("contact_us.html")
 
+
 @views.route('/about')
 def about():
     return render_template("about.html")
 
+
 @views.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    u_table = UserTable(User.query.all())
+    table_name = 'table_for_now'
+    table = User.query.all()
     '''#TODO: define permissions cond
     permission = Permissions.query.filter_by(id=User.query.filter_by(id=current_user.id).first().permission).first()
     if(permission == 'מנהל'):
@@ -38,17 +42,18 @@ def dashboard():
         return render_template("dashboard.html", value = Research.query.filter_by(researchers=User.query.filter_by(id=user.id).first().researches).all())
     else: flash('הרשאות לא הוגדרו', 'error')'''
     #return render_template("dashboard.html")
-    return render_template("dashboard.html", table=u_table)
+    return render_template("dashboard.html", table=table, table_name=table_name)
+
 
 @views.route('/profile')
 @login_required
 def profile():
-    return render_template("profile.html")
+    if current_user.is_authenticated:
+        user = current_user
+        return render_template("profile.html", user=user)
+    else:
+        flash('משתמש לא מחובר', 'error')
 
-@views.route('/builder')
-#@login_required
-def builder():
-    return render_template("template_builder.html")
 '''
 def delete_user():
     if "user" in session:

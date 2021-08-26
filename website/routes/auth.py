@@ -1,7 +1,7 @@
-from flask import Blueprint, render_template, flash, request, redirect, url_for, session
+from flask import Blueprint, render_template, flash, request, redirect, url_for
 from flask_bootstrap import Bootstrap
 from website.forms import RegistrationForm, LoginForm
-from ..extensions import db, bcrypt
+from ..extensions import db, bcrypt, session
 from website.models.user import User
 from flask_login import login_user, logout_user, current_user, login_required
 from flask_sqlalchemy import SQLAlchemy

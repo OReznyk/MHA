@@ -1,11 +1,9 @@
-from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
 from .commands import create_tables
 import config
-from .extensions import db, bootstrap, bcrypt, login_manager, csrf
-#, sess
+from .extensions import db, bootstrap, bcrypt, login_manager, csrf, session
 
-db = SQLAlchemy()
+
 def create_app(config_name):
     ## create & configure the app
     app = Flask(__name__)
@@ -16,8 +14,8 @@ def create_app(config_name):
     else:
         app.config.from_object(config_name)
 
-    #sess.init_app(app)
     db.init_app(app)
+    session.init_app(app)
     bcrypt.init_app(app)
     csrf.init_app(app)
     bootstrap.init_app(app)

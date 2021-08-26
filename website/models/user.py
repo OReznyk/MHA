@@ -3,16 +3,6 @@ from flask_login import UserMixin
 from sqlalchemy.sql import func
 from . import article, gender, permissions, research, response
 # import things
-from flask_table import Table, Col
-
-# Declare your table
-class UserTable(Table):
-    first_name = Col('שם')
-    second_name = Col('שם משפחה')
-    email = Col('אימייל')
-    permission = Col('הרשאות')
-    creation_date = Col('תאריך יצירה')
-    active = Col('סטטוס')
 
 
 class User(db.Model, UserMixin):
@@ -26,6 +16,7 @@ class User(db.Model, UserMixin):
     #image = db.Column(db.String(20), nullable=False, default='profile-default.png')
     creation_date = db.Column(db.DateTime(timezone=True), default=func.now())
     permission = db.Column(db.Integer, db.ForeignKey('permissions.id'))
+    permission_confirmation = db.Column(db.Boolean(), default=False)
 
     response = db.relationship('Response', backref='response_author', lazy=True)
     researches = db.relationship('Research', backref='research_author', lazy=True)

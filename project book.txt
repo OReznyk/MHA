@@ -1,0 +1,2 @@
+To create database run from command line (project dir): "flask create_tables"
+To run the app: run main.py from api or from command line (project dir): "python main.py" or "flask run"

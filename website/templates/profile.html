@@ -1,10 +1,48 @@
 {% extends "base.html" %}
 {% block main_content %}
-  <p>user.first_name</p>
-  <p>user.second_name</p>
-  <p>user.email</p>
-  <p>user.password</p>
-  <p>user.birth_date</p>
-  <p>user.gender</p>
-  <p>user.permission</p>
+<div class="table-responsive">
+    <table class="table table-profile">
+        <tr>
+            <td>
+                <p>שם</p>
+            </td>
+            <td>
+                  <a href="">{{ user.first_name }}</a>
+                  <a href="">{{ user.second_name }}</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>אימייל</p>
+            </td>
+            <td>
+                <a href="">{{ user.email }}</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>תאריך לידה</p>
+            </td>
+            <td>
+                <a href="">{{ user.birth_date }}</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+              <p>מין</p>
+            </td>
+            <td>
+                <a href="">{{ user.gender }}</a>
+            </td>
+        </tr>
+      <tr>
+            <td>
+                <p>הרשאת</p>
+            </td>
+            <td>
+                <a href="">{{ user.permission }}</a>
+            </td>
+        </tr>
+    </table>
+</div>
 {% endblock %}

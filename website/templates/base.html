@@ -80,8 +80,9 @@
         </div>
 
         <div class="sidenav col-sm-3 navbar-right">
+            {% block sidebar_add_content %}{% endblock %}
             {% block sidebar_content %}
-            <a href="{{ url_for('views.home') }}">דף הבית</a>
+            <a href="{{ url_for('views.dashboard') }}">דף הבית</a>
             <a href="{{ url_for('views.about') }}">MHA אודות</a>
             <a href="https://www.ariel.ac.il/wp/" target="_blank">אונברסיטת אריאל</a>
             <a href="{{ url_for('views.contact') }}">צור קשר</a> {% endblock %}

@@ -6,7 +6,7 @@ from flask_bcrypt import Bcrypt
 from flask_wtf.csrf import CSRFProtect
 
 db = SQLAlchemy()
-#sess = Session()
+session = Session()
 login_manager = LoginManager()
 bcrypt = Bcrypt()
 bootstrap = Bootstrap()

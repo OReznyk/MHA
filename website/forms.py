@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SelectField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SelectField, SubmitField, TextAreaField, FloatField
 from wtforms.validators import InputRequired, Email, Length, EqualTo, ValidationError
 from wtforms.fields.html5 import DateField
 from datetime import date
@@ -16,7 +16,6 @@ class LoginForm(FlaskForm):
 
 
 class RegistrationForm(FlaskForm):
-    # TODO: change it to pull from table
     genderList = Gender.query.all()
     permissionsList = Permissions.query.all()
 
@@ -35,3 +34,23 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user:
             raise ValidationError('הרשמה נכשלה: משתמש קיים')
+
+
+class ArticleForm(FlaskForm):
+    title = StringField('כותרת', validators=[InputRequired(), Length(min=2, max=150)])
+    content = TextAreaField('תוכן', validators=[InputRequired(), Length(min=5, max=150000)])
+    submit = SubmitField('שמירה')
+
+
+class QuestionForm(FlaskForm):
+    questionsTypesList = ['אמריקאית', 'פתוחה']
+    question = StringField('שאלה', validators=[InputRequired(), Length(min=2, max=250)])
+    weight = FloatField('משקל %', validators=[InputRequired(), Length(min=2, max=150)])
+    type = SelectField(u'סוג שאלה', choices=questionsTypesList)
+
+
+class AnswerForm(FlaskForm):
+    answer = TextAreaField('תשובה', validators=[InputRequired(), Length(min=2, max=250)])
+    weight = FloatField('נכונות %', validators=[InputRequired(), Length(min=2, max=150)])
+
+
