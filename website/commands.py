@@ -32,7 +32,7 @@ def create_tables():
     #perm = Permissions.query.filter_by(permission="מהנל").id
     user = User(email="admin@t.t", first_name="מנהל",
                     second_name="מנהל",
-                    gender="אחר", permission="מנהל", password=hashed_pwd)
+                    gender="אחר", permission="מנהל", permission_confirmation = True, password=hashed_pwd)
     db.session.add(user)
 
     db.session.commit()

@@ -173,14 +173,14 @@
 
 /* ---------------- section2 ------------------ */
 
-  . #save {
+   #save {
         bottom: 5%;
         position: fixed;
         right: 9%;
         font-size: 19px;
     }
 
-   .section2 .preview {
+  .preview {
         bottom: 5%;
         position: fixed;
         right: 22%;

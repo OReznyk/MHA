@@ -1,125 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d7ae0b1-090c-4702-9921-a957c565cb90" name="Default Changelist" comment="toolbar in template_builder.html">
-      <change afterPath="$PROJECT_DIR$/flask_session/847a01ec7ab74629a9d65b4b36ea7adf" afterDir="false" />
+    <list default="true" id="4d7ae0b1-090c-4702-9921-a957c565cb90" name="Default Changelist" comment="toolbar in template_builder.html working frontend (no drag func for now)">
+      <change afterPath="$PROJECT_DIR$/flask_session/tmp0__tbnwf.__wz_cache" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/flask_session/tmp0d43lk1b.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp0gm523c5.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp0hpx1i2o.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp0x5nxmbc.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp14ov98ue.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp1kuvq9eq.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp1u860x09.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp2gcncnrt.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp39itaqvc.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp3bnsii84.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp3q3undfc.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp4cyt9weo.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp4f52ys_j.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp4l7cwx9a.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp4l_9ovn9.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp4s8seb1l.__wz_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/tmp1a8l0x0v.__wz_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/tmp1cf69p6i.__wz_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/tmp1m9b6f54.__wz_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/tmp27podv3i.__wz_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/tmp2dyy38zj.__wz_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/tmp4kll3_i3.__wz_cache" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/flask_session/tmp5oyr9nay.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp65h2_c_1.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp67214s_1.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp6p5w3ti2.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp6qml8p3m.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp70_8yfm1.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp7xnx_dxy.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp82_a5n6r.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp8pkw2e0d.__wz_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/tmp7l0zo6df.__wz_cache" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/flask_session/tmp8s_1_r4x.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp8v3r6kcr.__wz_cache" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/flask_session/tmp8wifwa4r.__wz_cache" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/flask_session/tmp8yioijjj.__wz_cache" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/flask_session/tmp_5rs9epl.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp_m09n1rk.__wz_cache" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/flask_session/tmp_np3132m.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmp_rxgccpt.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpab6tdpx0.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpao_drzb9.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpar7rxaen.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpaw6z31h3.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpbpe8mve0.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpc7hi33d4.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpcbfp3zeo.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpcxru6h0x.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpd2m2ggf5.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpd5e184l6.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpd9_9sfoq.__wz_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/tmpaallb8mk.__wz_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/tmpbe8863mh.__wz_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/tmpc7y1bj0r.__wz_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/tmpcpclcexj.__wz_cache" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/flask_session/tmpdkyv3xl5.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpe4mglygz.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpf1v1jl1_.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpf7qh83tw.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpf_ylj6tt.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpfod6luao.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpfry8_tgz.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpft44ptce.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpgbwge_3c.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmph3uct9qe.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmph7ukmmqp.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmphqkqb9fh.__wz_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/tmpeg7bzei3.__wz_cache" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/flask_session/tmpid6lx6lc.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpim2i_km_.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpix_3yt43.__wz_cache" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/flask_session/tmpiz2hk4pe.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpjizco_1a.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpjn2k7gmb.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpk15q8wcg.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpkpearpjq.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpl2xvfwgh.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpm1zfrzki.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpmjdkt6d2.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpn1c4sa3i.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpn2220aoa.__wz_cache" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/flask_session/tmpnbk83pkp.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpnf1ee2_i.__wz_cache" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/flask_session/tmpnl0_7roq.__wz_cache" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/flask_session/tmpnmiyxnik.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpo3s_cj8o.__wz_cache" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/flask_session/tmpo9v7ias3.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpoa4kcnjc.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpokg0vkug.__wz_cache" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/flask_session/tmpoxvzi_oe.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpq3nyvbwc.__wz_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/tmpphn5q21e.__wz_cache" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/flask_session/tmpqqz8uxrr.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmprhn1583r.__wz_cache" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/flask_session/tmprqlgviya.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpsxra1b55.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpt4d413l8.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmptoub8i5j.__wz_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/tmpthfmvylb.__wz_cache" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/flask_session/tmpua4w6vec.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpuo3kqg5s.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpv34cqf07.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpvb10avz9.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpvbc4qb2k.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpvhvd6_n8.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpvvgn9w4b.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpw3d_jopo.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpwekjewbj.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpxe6fh7bv.__wz_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/tmpuxtmby45.__wz_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/tmpv8obp4f5.__wz_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/tmpvvn3p4lv.__wz_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/tmpy1v85f_u.__wz_cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flask_session/tmpz0llnq1q.__wz_cache" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/flask_session/tmpz94523iw.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpzdh1x0lx.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flask_session/tmpzx_qcr2z.__wz_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project book.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/Lib/site-packages/Flask-2.0.1.dist-info/RECORD" beforeDir="false" afterPath="$PROJECT_DIR$/env/Lib/site-packages/Flask-2.0.1.dist-info/RECORD" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/env/Lib/site-packages/flask_bootstrap/templates/bootstrap/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/env/Lib/site-packages/flask_bootstrap/templates/bootstrap/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/Scripts/flask.exe" beforeDir="false" afterPath="$PROJECT_DIR$/env/Scripts/flask.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flask_session/2029240f6d1128be89ddc32729463129" beforeDir="false" afterPath="$PROJECT_DIR$/flask_session/2029240f6d1128be89ddc32729463129" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flask_session/847a01ec7ab74629a9d65b4b36ea7adf" beforeDir="false" afterPath="$PROJECT_DIR$/flask_session/847a01ec7ab74629a9d65b4b36ea7adf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/commands.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/commands.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/dbDev.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/website/dbDev.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/extensions.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/extensions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/models/question.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/models/question.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/img/1.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/img/1.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/img/colors.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/img/colors.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/img/profile-default.png" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/img/profile-default.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/img/screenshots/dashboard.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/img/screenshots/dashboard.PNG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/img/screenshots/home.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/img/screenshots/home.PNG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/img/screenshots/login.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/img/screenshots/login.PNG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/img/screenshots/profile.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/img/screenshots/profile.PNG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/img/screenshots/signup.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/img/screenshots/signup.PNG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/img/screenshots/user.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/img/screenshots/user.PNG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/img/students.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/img/students.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/img/template.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/img/template.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/models/research.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/models/research.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/models/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/routes/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/routes/auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/routes/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/routes/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/static/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/templates/ContactResearch.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/css/base.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/logo-mha.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/mha.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/mha2.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/website/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/dashboard.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/profile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/templates/template_builder.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/template_builder.html" afterDir="false" />
     </list>
@@ -162,6 +110,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Olga\Desktop\2020-2021\MHA\website\static" />
+      <recent name="C:\Users\Olga\Desktop\2020-2021\MHA\website\static\css" />
       <recent name="C:\Users\Olga\Desktop\2020-2021\MHA\website\routes" />
     </key>
   </component>
@@ -256,7 +206,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629788785715</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="toolbar in template_builder.html working frontend (no drag func for now)">
+      <created>1629964376953</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1629964376953</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -276,6 +233,7 @@
     <MESSAGE value="Sql working ok &amp; setting default admin, permissions &amp; gender options. Skeleton changes. problem with session_cookie so auth pages not working." />
     <MESSAGE value="working signIn/login/logout/sqlAlchemy" />
     <MESSAGE value="toolbar in template_builder.html" />
-    <option name="LAST_COMMIT_MESSAGE" value="toolbar in template_builder.html" />
+    <MESSAGE value="toolbar in template_builder.html working frontend (no drag func for now)" />
+    <option name="LAST_COMMIT_MESSAGE" value="toolbar in template_builder.html working frontend (no drag func for now)" />
   </component>
 </project>

@@ -1,8 +1,10 @@
-from flask import Blueprint, render_template, flash
+from flask import Blueprint, render_template, flash, redirect, url_for, request
 from flask_login import login_required, current_user
-from ..extensions import session
+from website.forms import UpdateAccountForm
 from website.models.user import User
-from website.models.permissions import Permissions
+from website.models.research import Research
+from website.models.user import User
+from ..extensions import db
 
 views = Blueprint('views', __name__)
 
@@ -29,30 +31,53 @@ def about():
 @views.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    table_name = 'table_for_now'
-    table = User.query.all()
-    '''#TODO: define permissions cond
-    permission = Permissions.query.filter_by(id=User.query.filter_by(id=current_user.id).first().permission).first()
-    if(permission == 'מנהל'):
-        return render_template("dashboard.html", value = User.query.all())
-    elif(permission == 'נחקר'):
-        #TODO: return researches user pert-in
-        return render_template("dashboard.html", value = Research.query.all())
-    elif(permission == 'חוקר' or permission == 'עוזר מחקר'):
+    table_name = ''
+    table = {}
+    #TODO: define permissions cond
+    if(current_user.permission == 'מנהל'):
+        table_name = 'משתמשים לאישור הרשאות'
+        table = User.query.all()
+    elif(current_user.permission == 'נחקר'):
+        table_name = 'מחקרים למילוי'
+        table = Research.query.filter_by()
+    elif(current_user.permission == 'חוקר' or current_user.permission == 'עוזר מחקר'):
         return render_template("dashboard.html", value = Research.query.filter_by(researchers=User.query.filter_by(id=user.id).first().researches).all())
-    else: flash('הרשאות לא הוגדרו', 'error')'''
+    else: flash('הרשאות לא הוגדרו', 'error')
     #return render_template("dashboard.html")
     return render_template("dashboard.html", table=table, table_name=table_name)
 
 
-@views.route('/profile')
+@views.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
     if current_user.is_authenticated:
         user = current_user
-        return render_template("profile.html", user=user)
+        form = UpdateAccountForm()
+        if form.validate_on_submit():
+            current_user.first_name = form.firstname.data
+            current_user.second_name = form.name.data
+            current_user.email = form.email.data
+            current_user.birth_date = form.birthdate.data
+            current_user.gender = form.gender.data
+            if current_user.permission != form.permissions.data:
+                if form.permissions.data == "נחקר":
+                    current_user.permission_confirmation = True
+                else:
+                    current_user.permission_confirmation = False
+                current_user.permission = form.permissions.data
+            db.session.commit()
+            flash('שינויים נשמרו בהצלחה', 'success')
+        elif request.method == 'GET':
+            form.firstname.data = current_user.first_name
+            form.name.data = current_user.second_name
+            form.email.data = current_user.email
+            form.birthdate.data = current_user.birth_date
+            form.gender.data = current_user.gender
+            form.permissions.data = current_user.permission
+        return render_template("profile.html", user=user, form=form)
     else:
         flash('משתמש לא מחובר', 'error')
+        return redirect(url_for('auth.login'))
 
 '''
 def delete_user():

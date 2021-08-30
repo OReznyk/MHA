@@ -1,48 +1,8 @@
-{% extends "base.html" %}
-{% block main_content %}
-<div class="table-responsive">
-    <table class="table table-profile">
-        <tr>
-            <td>
-                <p>שם</p>
-            </td>
-            <td>
-                  <a href="">{{ user.first_name }}</a>
-                  <a href="">{{ user.second_name }}</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p>אימייל</p>
-            </td>
-            <td>
-                <a href="">{{ user.email }}</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p>תאריך לידה</p>
-            </td>
-            <td>
-                <a href="">{{ user.birth_date }}</a>
-            </td>
-        </tr>
-        <tr>
-            <td>
-              <p>מין</p>
-            </td>
-            <td>
-                <a href="">{{ user.gender }}</a>
-            </td>
-        </tr>
-      <tr>
-            <td>
-                <p>הרשאת</p>
-            </td>
-            <td>
-                <a href="">{{ user.permission }}</a>
-            </td>
-        </tr>
-    </table>
-</div>
+{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block styles %} {{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='base.css')}}"> {% endblock %}{% block main_content %}
+<form class="form-signin" method="POST" action="">
+    <h2 class="form-signin-heading">הרשמה</h2>
+    {{ form.hidden_tag() }} {{ wtf.form_field(form.email) }} {{ wtf.form_field(form.firstname) }} {{ wtf.form_field(form.name) }} {{ wtf.form_field(form.gender) }} {{ wtf.form_field(form.birthdate) }}
+    {{ wtf.form_field(form.permissions) }} {{ wtf.form_field(form.submit) }}
+</form>
 {% endblock %}

@@ -3,6 +3,7 @@ from wtforms import StringField, PasswordField, BooleanField, SelectField, Submi
 from wtforms.validators import InputRequired, Email, Length, EqualTo, ValidationError
 from wtforms.fields.html5 import DateField
 from datetime import date
+from flask_login import current_user
 from website.models.user import User
 from website.models.permissions import Permissions
 from website.models.gender import Gender
@@ -34,6 +35,25 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user:
             raise ValidationError('הרשמה נכשלה: משתמש קיים')
+
+
+class UpdateAccountForm(FlaskForm):
+    genderList = Gender.query.all()
+    permissionsList = Permissions.query.all()
+
+    email = StringField('אימייל', validators=[InputRequired(), Email(message='Invalid email'), Length(max=100)])
+    firstname = StringField('שם משפחה', validators=[InputRequired(), Length(min=2, max=50)])
+    name = StringField('שם פרטי', validators=[InputRequired(), Length(min=2, max=50)])
+    gender = SelectField(u'מין', choices=genderList)
+    birthdate = DateField('תאריך לידה', default=date.today())
+    permissions = SelectField(u'הרשאות', choices=permissionsList)
+    submit = SubmitField('עדכון')
+
+    def validate_email(self, email):
+        if email.data != current_user.email:
+            user = User.query.filter_by(email=email.data).first()
+            if user:
+                raise ValidationError('שמירה נכשלה: משתמש קיים')
 
 
 class ArticleForm(FlaskForm):

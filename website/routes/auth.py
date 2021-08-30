@@ -1,10 +1,8 @@
 from flask import Blueprint, render_template, flash, request, redirect, url_for
-from flask_bootstrap import Bootstrap
 from website.forms import RegistrationForm, LoginForm
 from ..extensions import db, bcrypt, session
 from website.models.user import User
 from flask_login import login_user, logout_user, current_user, login_required
-from flask_sqlalchemy import SQLAlchemy
 
 auth = Blueprint('auth', __name__)
 
@@ -51,11 +49,12 @@ def signup():
     if form.validate_on_submit():
         hashed_pwd = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         # TODO: check permissions: create regular user for all types of permissions
-        # if not regular permission -> send to admin for change + flash msg as: user created & send for permission approval
-        # TODO: set id's for gender & permissions
+        # if not regular permission ->  flash msg as: user created & send for permission approval
         user = User(email=form.email.data, first_name=form.firstname.data,
-                    second_name=form.name.data, birth_date=form.birthdate.data,
-                    gender=form.gender.data, permission=form.permissions.data, password=hashed_pwd)
+                        second_name=form.name.data, birth_date=form.birthdate.data,
+                        gender=form.gender.data, permission=form.permissions.data, password=hashed_pwd)
+        if form.permissions.data == "נחקר":
+            user.permission_confirmation = True
         # Saving user to models
         db.session.add(user)
         db.session.commit()
@@ -65,6 +64,7 @@ def signup():
         return redirect(url_for("auth.login"))
 
     return render_template('signup.html', form=form)
+
 
 '''
     Logout function redirects to home page
