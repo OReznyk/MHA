@@ -1,8 +1,8 @@
 from ..extensions import db, login_manager
 from flask_login import UserMixin
 from sqlalchemy.sql import func
-from . import article, gender, permissions, research, response
-# import things
+#from sqlalchemy.orm import relationship
+from . import participants
 
 
 class User(db.Model, UserMixin):
@@ -15,14 +15,12 @@ class User(db.Model, UserMixin):
     second_name = db.Column(db.String(50))
     birth_date = db.Column(db.Date(), default=func.now())
     gender = db.Column(db.Integer, db.ForeignKey('gender.id'))
-    #image = db.Column(db.String(20), nullable=False, default='profile-default.png')
+    image = db.Column(db.String(20), nullable=False, default='profile-default.png')
     permission = db.Column(db.Integer, db.ForeignKey('permissions.id'))
     permission_confirmation = db.Column(db.Boolean(), default=False)
 
-    response = db.relationship('Response', backref='response_author', lazy=True)
-    researches = db.relationship('Research', backref='research_author', lazy=True)
-
-    articles = db.relationship('Article', backref='article_author', lazy=True)
+    #participant_at = db.relationship("Research", secondary=participants,  backref=db.backref("participants", lazy='dynamic'))
+    #articles = db.relationship('Article', backref='author', lazy=True)
 
     creation_date = db.Column(db.DateTime(timezone=True), default=func.now())
     active = db.Column(db.Boolean(), default=True)

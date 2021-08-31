@@ -42,7 +42,8 @@ def dashboard():
         table = Research.query.filter_by()
     elif(current_user.permission == 'חוקר' or current_user.permission == 'עוזר מחקר'):
         return render_template("dashboard.html", value = Research.query.filter_by(researchers=User.query.filter_by(id=user.id).first().researches).all())
-    else: flash('הרשאות לא הוגדרו', 'error')
+    else:
+        flash('הרשאות לא הוגדרו', 'error')
     #return render_template("dashboard.html")
     return render_template("dashboard.html", table=table, table_name=table_name)
 
