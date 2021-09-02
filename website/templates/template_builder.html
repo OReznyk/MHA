@@ -1,20 +1,16 @@
-{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block styles %} {{super()}}
-<link rel="stylesheet" href="{{url_for('static', filename='base.css')}}"> {% endblock %} {% block main_content %}{% endblock %} {% block sidebar_content %}
+{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block main_content %}{% endblock %} {% block sidebar_content %}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css" rel="stylesheet" type="text/css" />
+<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css" rel="stylesheet" type="text/css" /> -->
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src=" https://unpkg.com/sweetalert/dist/sweetalert.min.js ">
 </script>
 <script src="sweetalert2.min.js"></script>
 <link rel="stylesheet" href="sweetalert2.min.css">
-
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<script src="js/jscript.js" type="text/javascript"></script>
 
 <script>
     $(document).ready(function() {

@@ -1,5 +1,4 @@
-{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block styles %} {{super()}}
-<link rel="stylesheet" href="{{url_for('static', filename='base.css')}}"> {% endblock %} {% block collapsing_navbar %}
+{% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block collapsing_navbar %}
 
 
 <ul class="nav navbar-nav navbar-right">
@@ -12,8 +11,7 @@
     <li><a href="">מחקר חדש</a></li>
     <li><a href="#">הגדרות</a></li>
 </ul>
-{% endblock %}
-{% block main_content %}
+{% endblock %} {% block main_content %}
 <div class="">
     <div class="row placeholders">
         <div class="col-xs-6 placeholder right">
@@ -29,21 +27,21 @@
         </div>
     </div>
 
-  <h2 class="sub-header">{{ table_name }}</h2>
-  <div class="table-responsive">
-    <table class="table table-striped">
-        {% for user in table %}
-        <tr>
-            <td>{{ user.first_name }}</td>
-            <td>{{ user.second_name }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.birth_date }}</td>
-            <td>{{ user.creation_date }}</td>
-            <td>{{ user.permission }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-  </div>
+    <h2 class="sub-header">{{ table_name }}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            {% for user in table %}
+            <tr>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.second_name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.birth_date }}</td>
+                <td>{{ user.creation_date }}</td>
+                <td>{{ user.permission }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 </div>
 
 <style>
