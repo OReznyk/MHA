@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from sqlalchemy.exc import SQLAlchemyError
 from wtforms import StringField, PasswordField, BooleanField, SelectField, SubmitField, TextAreaField, FloatField
 from wtforms.validators import InputRequired, Email, Length, EqualTo, ValidationError
 from wtforms.fields.html5 import DateField
@@ -17,8 +18,15 @@ class LoginForm(FlaskForm):
 
 
 class RegistrationForm(FlaskForm):
-    genderList = Gender.query.all()
-    permissionsList = Permissions.query.all()
+    genderList = ''
+    permissionsList = ''
+    try:
+        genderList = Gender.query.all()
+        permissionsList = Permissions.query.all()
+    except SQLAlchemyError as e:
+        error = str(e.__dict__['orig'])
+        print(error)
+        pass
 
     email = StringField('אימייל', validators=[InputRequired(), Email(message='Invalid email'), Length(max=100)])
     firstname = StringField('שם משפחה', validators=[InputRequired(), Length(min=2, max=50)])
@@ -38,8 +46,15 @@ class RegistrationForm(FlaskForm):
 
 
 class UpdateAccountForm(FlaskForm):
-    genderList = Gender.query.all()
-    permissionsList = Permissions.query.all()
+    genderList = ''
+    permissionsList = ''
+    try:
+        genderList = Gender.query.all()
+        permissionsList = Permissions.query.all()
+    except SQLAlchemyError as e:
+        error = str(e.__dict__['orig'])
+        print(error)
+        pass
 
     email = StringField('אימייל', validators=[InputRequired(), Email(message='Invalid email'), Length(max=100)])
     firstname = StringField('שם משפחה', validators=[InputRequired(), Length(min=2, max=50)])
