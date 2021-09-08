@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from website.forms import UpdateAccountForm
 from website.models.gender import Gender
 from website.models.permissions import Permissions
-from website.models.research import Research
+from website.models.research_participants import Participants
 from website.models.user import User
 from ..extensions import db
 
@@ -34,16 +34,15 @@ def about():
 @login_required
 def dashboard():
     # if user has no permission_confirmation -> it`s regular user
-    table_name = 'מחקרים למילוי'
-    table = Research.query.filter_by()
+    table_name = 'מחקרים'
+    table = Participants.query.filter_by(participant_id=current_user.id).all()
     # else
-    if current_user.permission_confirmation:
-        perm = "מנהל"
-        if current_user.permission == perm:
+    if current_user.permission_confirmation and not str(current_user.permission) == "נחקר":
+        if str(current_user.permission) == "מנהל":
             table_name = 'משתמשים לאישור הרשאות'
             table = User.query.all()
-        elif current_user.permission == 'חוקר' or current_user.permission == 'עוזר מחקר':
-            return render_template("dashboard.html", value=Research.query.filter_by(researchers=User.query.filter_by(id=current_user.id).first().researches).all())
+        elif str(current_user.permission) == 'חוקר' or str(current_user.permission) == 'עוזר מחקר':
+            return render_template("dashboard.html", table_name=table_name, table=Participants.query.filter_by(participant_id=current_user.id).all())
         else:
             flash('הרשאות לא הוגדרו', 'error')
 

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d7ae0b1-090c-4702-9921-a957c565cb90" name="Default Changelist" comment="bootstrap working. added bootstrap dir with wtf &amp; base htmls code. Changed user`s permissions &amp; gender saving/changing code so it will save id`s &amp; not strings">
+    <list default="true" id="4d7ae0b1-090c-4702-9921-a957c565cb90" name="Default Changelist" comment="corrected dashboard permissions settings &amp; string error in permissions default data">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flask_session/847a01ec7ab74629a9d65b4b36ea7adf" beforeDir="false" afterPath="$PROJECT_DIR$/flask_session/847a01ec7ab74629a9d65b4b36ea7adf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/commands.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/commands.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/dbDev.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/website/dbDev.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/routes/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/routes/views.py" afterDir="false" />
     </list>
@@ -178,7 +177,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631107158769</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="corrected dashboard permissions settings &amp; string error in permissions default data">
+      <created>1631112513269</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1631112513269</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -203,14 +209,15 @@
     <MESSAGE value="created more tables for future work." />
     <MESSAGE value="tables ok. from last pull cant find bootstrap/base.html. on it" />
     <MESSAGE value="bootstrap working. added bootstrap dir with wtf &amp; base htmls code. Changed user`s permissions &amp; gender saving/changing code so it will save id`s &amp; not strings" />
-    <option name="LAST_COMMIT_MESSAGE" value="bootstrap working. added bootstrap dir with wtf &amp; base htmls code. Changed user`s permissions &amp; gender saving/changing code so it will save id`s &amp; not strings" />
+    <MESSAGE value="corrected dashboard permissions settings &amp; string error in permissions default data" />
+    <option name="LAST_COMMIT_MESSAGE" value="corrected dashboard permissions settings &amp; string error in permissions default data" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/website/routes/views.py</url>
-          <line>41</line>
+          <line>40</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
