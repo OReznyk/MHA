@@ -55,7 +55,7 @@ def add_default_permissions():
     """ Adding default permissions """
     # Default init for permissions
     from website.models.permissions import Permissions
-    perm = ["נחקר", "חוקר", "עוזר מחקר", "מהנל"]
+    perm = ["נחקר", "חוקר", "עוזר מחקר", "מנהל"]
     for p in perm:
         permission = Permissions(permission=p)
         db.session.add(permission)

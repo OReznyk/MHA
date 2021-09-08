@@ -33,20 +33,20 @@ def about():
 @views.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    table_name = ''
-    table = {}
-    #TODO: define permissions cond
-    if(current_user.permission == 'מנהל'):
-        table_name = 'משתמשים לאישור הרשאות'
-        table = User.query.all()
-    elif(current_user.permission == 'נחקר'):
-        table_name = 'מחקרים למילוי'
-        table = Research.query.filter_by()
-    elif(current_user.permission == 'חוקר' or current_user.permission == 'עוזר מחקר'):
-        return render_template("dashboard.html", value=Research.query.filter_by(researchers=User.query.filter_by(id=current_user.id).first().researches).all())
-    else:
-        flash(current_user.permission, 'error')
-    #return render_template("dashboard.html")
+    # if user has no permission_confirmation -> it`s regular user
+    table_name = 'מחקרים למילוי'
+    table = Research.query.filter_by()
+    # else
+    if current_user.permission_confirmation:
+        perm = "מנהל"
+        if current_user.permission == perm:
+            table_name = 'משתמשים לאישור הרשאות'
+            table = User.query.all()
+        elif current_user.permission == 'חוקר' or current_user.permission == 'עוזר מחקר':
+            return render_template("dashboard.html", value=Research.query.filter_by(researchers=User.query.filter_by(id=current_user.id).first().researches).all())
+        else:
+            flash('הרשאות לא הוגדרו', 'error')
+
     return render_template("dashboard.html", table=table, table_name=table_name)
 
 
