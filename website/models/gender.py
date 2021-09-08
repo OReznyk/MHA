@@ -7,4 +7,4 @@ class Gender(db.Model):
     users = db.relationship('User', backref='gender', lazy=True)
 
     def __repr__(self):
-        return "{self.gender}"
+        return self.gender

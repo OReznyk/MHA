@@ -1,12 +1,14 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request
 from flask_login import login_required, current_user
 from website.forms import UpdateAccountForm
-from website.models.user import User
+from website.models.gender import Gender
+from website.models.permissions import Permissions
 from website.models.research import Research
 from website.models.user import User
 from ..extensions import db
 
 views = Blueprint('views', __name__)
+
 
 @views.route('/')
 def home():
@@ -41,9 +43,9 @@ def dashboard():
         table_name = 'מחקרים למילוי'
         table = Research.query.filter_by()
     elif(current_user.permission == 'חוקר' or current_user.permission == 'עוזר מחקר'):
-        return render_template("dashboard.html", value = Research.query.filter_by(researchers=User.query.filter_by(id=user.id).first().researches).all())
+        return render_template("dashboard.html", value=Research.query.filter_by(researchers=User.query.filter_by(id=current_user.id).first().researches).all())
     else:
-        flash('הרשאות לא הוגדרו', 'error')
+        flash(current_user.permission, 'error')
     #return render_template("dashboard.html")
     return render_template("dashboard.html", table=table, table_name=table_name)
 
@@ -59,13 +61,15 @@ def profile():
             current_user.second_name = form.name.data
             current_user.email = form.email.data
             current_user.birth_date = form.birthdate.data
-            current_user.gender = form.gender.data
+            g = db.session.query(Gender).filter_by(gender=form.gender.data).first()
+            g.users.append(user)
             if current_user.permission != form.permissions.data:
                 if form.permissions.data == "נחקר":
                     current_user.permission_confirmation = True
                 else:
                     current_user.permission_confirmation = False
-                current_user.permission = form.permissions.data
+                p = Permissions.query.filter_by(permission=form.permissions.data).first()
+                p.users.append(user)
             db.session.commit()
             flash('שינויים נשמרו בהצלחה', 'success')
         elif request.method == 'GET':

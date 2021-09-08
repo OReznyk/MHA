@@ -7,4 +7,4 @@ class Permissions(db.Model):
     users = db.relationship('User', backref='permission', lazy=True)
 
     def __repr__(self):
-        return "{self.id}", "{self.permission}"
+        return self.permission
