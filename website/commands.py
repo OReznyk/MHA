@@ -6,20 +6,6 @@ from .extensions import db, bcrypt
 @click.command(name='create_tables')
 @with_appcontext
 def create_tables():
-    from website.models.answer import Answer
-    from website.models.article import Article
-    from website.models.message import Message
-    from website.models.question import Question
-    from website.models.response import Response
-    from website.models.role import Role
-    from website.models.permissions import Permissions
-    from website.models.gender import Gender
-
-    from website.models.research import Research
-    from website.models.user import User
-
-    from website.models.questioner import Questioner
-    from website.models.research_participants import Participants
 
     db.create_all()
     if not db.session.commit():
@@ -41,8 +27,9 @@ def add_default_admin():
     user = User(email="admin@t.t", first_name="מנהל", second_name="מנהל", permission_confirmation=True, password=hashed_pwd)
     db.session.add(user)
     g = db.session.query(Gender).filter_by(gender="אחר").first()
-    p = Permissions.query.filter_by(permission="מהנל").first()
     g.users.append(user)
+
+    p = Permissions.query.filter_by(permission="מנהל").first()
     p.users.append(user)
     db.session.commit()
 
@@ -76,6 +63,20 @@ def add_default_gender():
     db.session.commit()
 
     print('Initialized default gender')
+
+
+@click.command(name='add_default_role')
+@with_appcontext
+def add_default_role():
+    """ Adding default gender """
+    from website.models.role import Role
+    roles = ["מחבר", "מפקח", "נחקר", "עורך", "משתתף"]
+    for r in roles:
+        role = Role(role=r)
+        db.session.add(role)
+    db.session.commit()
+
+    print('Initialized default role')
 
 
 @click.command(name='reset_db')

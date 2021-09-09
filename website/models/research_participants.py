@@ -7,7 +7,7 @@ class Participants(db.Model):
     research_id = db.Column('research_id', db.Integer, db.ForeignKey('research.id'), primary_key=True)
     participant_id = db.Column('participant_id', db.Integer, db.ForeignKey('user.id'), primary_key=True)
 
-    role = db.Column(db.Integer, db.ForeignKey('role.id'))
+    role_id = db.Column(db.Integer, db.ForeignKey('role.id'))
     responded = db.Column(db.Boolean(), default=False)
     invited = db.Column(db.Boolean(), default=False)
 

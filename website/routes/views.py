@@ -1,9 +1,14 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request
 from flask_login import login_required, current_user
-from website.forms import UpdateAccountForm
+from website.forms import UpdateAccountForm, QuestionForm, AnswerForm, ResearchForm, BasicForm
 from website.models.gender import Gender
+from website.models.role import Role
 from website.models.permissions import Permissions
 from website.models.research_participants import Participants
+from website.models.question import Question
+from website.models.questioner import Questioner
+from website.models.answer import Answer
+from website.models.research import Research
 from website.models.user import User
 from ..extensions import db
 
@@ -17,7 +22,55 @@ def home():
 
 @views.route('/builder')
 def builder():
-    return render_template("template_builder.html")
+    research_form = ResearchForm()
+    questioner_form = BasicForm()
+    question_form = QuestionForm()
+    answer_form = AnswerForm()
+    questioners = []
+    questions = []
+    answers = []
+    if question_form.validate_on_submit():
+        q = Question(question=question_form.question.data, weight=question_form.weight.data, type=question_form.type.data, place=question_form.place.data, author_id=current_user.id)
+        questions.append(q)
+        db.session.add(q)
+        # add question.id to all answers where no question.id
+        # every question submit must be after answers for this question submitted
+        for answer in answers:
+            if answer.question_id == '':
+                q.optional_answers.append(answer)
+                db.session.add(answer)
+                answers.remove(answer)
+    elif answer_form.validate_on_submit():
+        a = Answer(answer=answer_form.answer.data, type=answer_form.type.data, weight=answer_form.weight.data)
+        answers.append(a)
+    elif research_form.validate_on_submit():
+        questioner = Questioner(title=questioner_form.title.data, content=questioner_form.content.data)
+        for q in questions:
+            questioner.question.append(q)
+            questioner.remove(q)
+        questioners.append(questioner)
+        db.session.add(questioner)
+    elif research_form.validate_on_submit():
+        #TODO: get participants as well
+        #TODO: check if save or publish
+        r = Research(title=research_form.title.data, content=research_form.content.data)
+        for q in questioners:
+            r.questioner.append(q)
+            questioners.remove(q)
+        if research_form.publish.validate(research_form):
+            if str(current_user.permission) != 'חוקר':
+                r.waiting_to_approval = True
+            else:
+                r.approved = True
+        db.session.add(r)
+
+        p = Participants(research_id=r.id, participant_id=current_user.id)
+        db.session.add(p)
+        role = Role.query.filter_by(role='מחבר').first()
+        role.participant.append(p)
+        db.session.add(role)
+        db.session.commit()
+    return render_template("template_builder.html", questioner_form=questioner_form, question_form=question_form, answer_form=answer_form)
 
 
 @views.route('/contact', methods=['GET', 'POST'])
@@ -40,7 +93,7 @@ def dashboard():
     if current_user.permission_confirmation and not str(current_user.permission) == "נחקר":
         if str(current_user.permission) == "מנהל":
             table_name = 'משתמשים לאישור הרשאות'
-            table = User.query.all()
+            table = User.query.filter_by(permission_confirmation=False).all()
         elif str(current_user.permission) == 'חוקר' or str(current_user.permission) == 'עוזר מחקר':
             return render_template("dashboard.html", table_name=table_name, table=Participants.query.filter_by(participant_id=current_user.id).all())
         else:
@@ -53,13 +106,13 @@ def dashboard():
 @login_required
 def profile():
     if current_user.is_authenticated:
-        user = current_user
         form = UpdateAccountForm()
         if form.validate_on_submit():
             current_user.first_name = form.firstname.data
             current_user.second_name = form.name.data
             current_user.email = form.email.data
             current_user.birth_date = form.birthdate.data
+            user = current_user
             g = db.session.query(Gender).filter_by(gender=form.gender.data).first()
             g.users.append(user)
             if current_user.permission != form.permissions.data:

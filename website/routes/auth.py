@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, flash, request, redirect, url_for
 from website.forms import RegistrationForm, LoginForm
-from ..extensions import db, bcrypt, session
+from ..extensions import db, bcrypt
 from website.models.user import User
 from website.models.gender import Gender
 from website.models.permissions import Permissions
@@ -15,7 +15,7 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-    # if user already loged in -> logout to login
+    # if user already logged in -> logout to login
     if current_user.is_authenticated:
         flash('חייבים להתנתק בכדי להכנס מחדש', 'error')
         return redirect(url_for("views.dashboard"))

@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from sqlalchemy.exc import SQLAlchemyError
-from wtforms import StringField, PasswordField, BooleanField, SelectField, SubmitField, TextAreaField, FloatField
-from wtforms.validators import InputRequired, Email, Length, EqualTo, ValidationError
+from wtforms import StringField, PasswordField, BooleanField, SelectField, SubmitField, TextAreaField, FloatField, IntegerField
+from wtforms.validators import InputRequired, Email, Length, EqualTo, ValidationError, NumberRange
 from wtforms.fields.html5 import DateField
 from datetime import date
 from flask_login import current_user
@@ -71,10 +71,17 @@ class UpdateAccountForm(FlaskForm):
                 raise ValidationError('שמירה נכשלה: משתמש קיים')
 
 
-class ArticleForm(FlaskForm):
+class BasicForm(FlaskForm):
     title = StringField('כותרת', validators=[InputRequired(), Length(min=2, max=150)])
     content = TextAreaField('תוכן', validators=[InputRequired(), Length(min=5, max=150000)])
     submit = SubmitField('שמירה')
+
+
+class ResearchForm(FlaskForm):
+    title = StringField('כותרת', validators=[InputRequired(), Length(min=2, max=500)])
+    content = TextAreaField('תוכן', validators=[InputRequired(), Length(min=5, max=250000)])
+    save = SubmitField('שמירה')
+    publish = SubmitField('פירסום')
 
 
 class QuestionForm(FlaskForm):
@@ -82,6 +89,7 @@ class QuestionForm(FlaskForm):
     question = StringField('שאלה', validators=[InputRequired(), Length(min=2, max=250)])
     weight = FloatField('משקל %', validators=[InputRequired(), Length(min=2, max=150)])
     type = SelectField(u'סוג שאלה', choices=questionsTypesList)
+    place = IntegerField('rating', validators=[InputRequired(), NumberRange(min=0, max=500)])
 
 
 class AnswerForm(FlaskForm):

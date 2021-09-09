@@ -31,6 +31,7 @@ def create_app(config_name):
     app.cli.add_command(add_default_gender)
     app.cli.add_command(add_default_permissions)
     app.cli.add_command(add_default_admin)
+    app.cli.add_command(add_default_role)
 
     # importing blueprints
     from website.routes.views import views
