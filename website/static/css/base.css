@@ -138,6 +138,11 @@
     background-color: #458e7b;
 }
 
+.btn-primary {
+    background-color: #458e7b;
+    border-color: #458e7b;
+}
+
 
 /* ////////////////////////////// */
 
@@ -194,7 +199,8 @@
     cursor: all-scroll;
 }
 
-.swal2-container {
+.swal2-container,
+.swal-modal {
     direction: rtl;
 }
 
@@ -203,9 +209,68 @@
     font-size: 15px;
 }
 
-.swal2-input {
-    width: 70%;
+.swal2-input,
+.swal2-file,
+.swal2-input,
+.swal2-textarea {
+    width: 75% !important;
 }
+
+.tab_from h2 {
+    margin-bottom: 25px;
+}
+
+.tab_from .information {
+    min-height: 45vh;
+}
+
+.options .edit .duplicate {
+    display: none;
+}
+
+.img_info {
+    width: 100%;
+}
+
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th {
+    text-align: center;
+}
+
+
+/* טווח  */
+
+.range-wrap {
+    position: relative;
+    width: 75%;
+}
+
+.bubble {
+    background: #458e7b;
+    color: white;
+    padding: 4px 12px;
+    position: absolute;
+    border-radius: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.bubble::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #458e7b;
+    top: -1px;
+    left: 50%;
+}
+
+
+/* ********* */
 
 .section2 .el-radio {
     text-align: right;
@@ -243,7 +308,7 @@
 }
 
 .section2 p {
-    padding: 15px 30px;
+    padding: 0px 30px;
     font-size: 19px;
     line-height: 1.7;
 }
@@ -291,6 +356,160 @@
 .modal-dialog .edit {
     display: none;
 }
+
+
+/* ///////////////////////////////// */
+
+.mobile {
+    display: none;
+}
+
+.section1 {
+    display: none;
+}
+
+
+/* ---------------- section1 ------------------ */
+
+#regForm {
+    /* background-color: #ffffff;
+margin: 100px auto;
+width: 70%;
+min-width: 300px; */
+    padding: 40px;
+    max-width: 870px;
+    margin: 0 auto;
+}
+
+#regForm .btn-primary {
+    margin: 20px 0;
+}
+
+input {
+    padding: 5px;
+    width: 100%;
+    font-size: 17px;
+    /* font-family: Raleway; */
+    border: 1px solid #aaaaaa;
+    color: #091f35;
+}
+
+select {
+    width: 100%;
+    height: 40px;
+    padding: 5px;
+    color: #000;
+}
+
+input[type=checkbox],
+input[type=radio] {
+    width: auto;
+}
+
+
+/* Mark input boxes that gets an error on validation: */
+
+input.invalid {
+    background-color: #ffdddd;
+}
+
+
+/* Hide all steps by default: */
+
+.tab_from {
+    display: none;
+}
+
+
+/* button {
+    
+    background-color: #00aeef;
+    color: #ffffff;
+    border: none;
+    padding: 6px 16px;
+    font-size: 17px;
+    cursor: pointer;
+} */
+
+button:hover {
+    opacity: 0.8;
+}
+
+button:focus {
+    outline: none;
+}
+
+input[type=file] {
+    border: 0;
+    display: inline-block;
+    width: auto;
+    color: #de8622;
+}
+
+#submit_btn {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+}
+
+.steps {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+#prevBtn {
+    background-color: #bbbbbb;
+}
+
+.nextPrev {
+    margin-top: 20px;
+}
+
+
+/* Make circles that indicate the steps of the form: */
+
+.step {
+    height: 40px;
+    width: 40px;
+    margin: 0 15px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    line-height: 40px;
+    font-size: 20px;
+    /* opacity: 0.5; */
+    /* box-shadow: 0 0 0px 1px #fdb614, 0 0 0px 1px #f37121; */
+    box-shadow: 0 0 0px 1px #00aeef, 0 0 0px 1px #1c9bc1;
+    /* background: linear-gradient(to left, #fdb614 0%, #f37121 100%); */
+    background: linear-gradient(to left, #00aeef, #1c9bc1 100%);
+    display: inline-block;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.step.active {
+    /* background: linear-gradient(to left, #f37121 0%, #fdb614 100%); */
+    background: linear-gradient(to left, #00aeef, #1c9bc1 100%);
+    -webkit-text-fill-color: #052341;
+}
+
+
+/* Mark the steps that are finished and valid: */
+
+.step.finish {
+    background-color: #4CAF50;
+}
+
+@media screen and (max-width:355px) {
+    .w15 {
+        width: 22%;
+    }
+}
+
+
+/* //////////////////////////////// */
 
 @media (min-width: 768px) {
     .modal-dialog {

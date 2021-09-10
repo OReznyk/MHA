@@ -1,15 +1,19 @@
 var i = 0;
 var radio_i = 0
+var range_i = 0;
+var txt_edit = "<div class='edit'> <button class='duplicate' type='button' onClick='duplicate(this)'> שכפל</button> <button type='button' class='delete' onclick='delete_e(this)'> מחק</button></div>"
 $(document).ready(function() {
 
 
     $("#title").click(function() {
         swal("הכנס כותרת:", {
                 content: "input",
+
+
             })
             .then((value) => {
                 i++;
-                $(".section2").append("<div  class='element'  id='el-" + i + "'><h2 class='edit_text' contenteditable='true'>" + value + "</h2>  <div class='edit'>    <input type='button' value='שמור שינויים' onclick='saveEdits(this)'/><span class='update'> - ערוך את הטקסט ולחץ לשמור</span> <button onClick='duplicate(this)'> שכפל</button> <button class='delete' onclick='delete_e(this)'> מחק</button>  </div></div>");
+                $(".section2 .information" + currentTab).append("<div  class='element'  id='el-" + i + "'><h2 class='edit_text' contenteditable='true'>" + value + "</h2>" + txt_edit + "</div>");
                 drag();
             });
 
@@ -33,7 +37,7 @@ $(document).ready(function() {
 
             if (text) {
                 i++;
-                $(".section2").append("<div  class='element'  id='el-" + i + "'><p>" + text + "</p>    <div class='edit'> <button onClick='duplicate(this)'> שכפל</button> <button class='delete' onclick='delete_e(this)'> מחק</button>  </div></div>");
+                $(".section2 .information" + currentTab).append("<div  class='element'  id='el-" + i + "'><p class='edit_text' contenteditable='true'>" + text + "</p>" + txt_edit + "</div>");
             }
             drag();
         })()
@@ -53,7 +57,7 @@ $(document).ready(function() {
 
             if (url) {
                 i++;
-                $(".section2").append("<div  class='element'  id='el-" + i + "'><iframe width='560' height='315' src='" + url + "'> </iframe>    <div class='edit'> <button onClick='duplicate(this)'> שכפל</button> <button class='delete' onclick='delete_e(this)'> מחק</button>  </div></div>");
+                $(".section2 .information" + currentTab).append("<div  class='element'  id='el-" + i + "'><iframe width='560' height='315' src='" + url + "'> </iframe>" + txt_edit + "</div>");
 
 
 
@@ -72,10 +76,10 @@ $(document).ready(function() {
             } = await Swal.fire({
                 title: 'הכנס שאלה עם אפשרות לתשובה אחת',
                 html: ' שאלה: <input id="swal-input1" class="swal2-input"><br>' +
-                    'תשובה 1<input id="swal-input2" class="swal2-input"><br>' +
-                    'תשובה 2<input id="swal-input3" class="swal2-input"><br>' +
-                    'תשובה 3<input id="swal-input4" class="swal2-input"><br>' +
-                    'תשובה 4<input id="swal-input5" class="swal2-input"><br>',
+                    'תשובה 1<input id="swal-input2" value="כן" class="swal2-input"><br>' +
+                    'תשובה 2<input id="swal-input3" value="לא"  class="swal2-input"><br">' +
+                    'תשובה 3<input id="swal-input4" value="לא יודע"  class="swal2-input"><br>',
+
                 focusConfirm: false,
                 preConfirm: () => {
                     return [
@@ -83,7 +87,7 @@ $(document).ready(function() {
                         $('#swal-input2').val(),
                         $('#swal-input3').val(),
                         $('#swal-input4').val(),
-                        $('#swal-input5').val()
+
                     ]
 
 
@@ -94,7 +98,7 @@ $(document).ready(function() {
 
                 i++;
                 radio_i++;
-                $(".section2").append("<div  class='element el-radio'  id='el-" + i + "'><p>" + formValues[0] + "</p><input type='radio' name='radio" + radio_i + "' value='" + formValues[1] + "'><label for='" + formValues[1] + "'>" + formValues[1] + "</label><br><input type='radio' name='radio" + radio_i + "' value='" + formValues[2] + "'><label for='" + formValues[2] + "'>" + formValues[2] + "</label><br><input type='radio' name='radio" + radio_i + "' value='" + formValues[3] + "'><label for='" + formValues[3] + "'>" + formValues[3] + "</label><br><input type='radio' name='radio" + radio_i + "' value='" + formValues[4] + "'><label for='" + formValues[4] + "'>" + formValues[4] + "</label> <div class='edit'> <button onClick='duplicate(this)'> שכפל</button> <button class='delete' onclick='delete_e(this)'> מחק</button>  </div></div>");
+                $(".section2 .information" + currentTab).append("<div  class='element el-radio'  id='el-" + i + "'><p>" + formValues[0] + "</p><input type='radio' name='radio" + radio_i + "' value='" + formValues[1] + "'><label for='" + formValues[1] + "'>" + formValues[1] + "</label><br><input type='radio' name='radio" + radio_i + "' value='" + formValues[2] + "'><label for='" + formValues[2] + "'>" + formValues[2] + "</label><br><input type='radio' name='radio" + radio_i + "' value='" + formValues[3] + "'><label for='" + formValues[3] + "'>" + formValues[3] + "</label>" + txt_edit + "</div>");
 
             }
             drag();
@@ -106,13 +110,71 @@ $(document).ready(function() {
     $("#image").click(function() {
         (async() => {
             i++;
-            $(".section2").append("<div  class='element'  id='el-" + i + "'><p><input type='file' accept='image/*'' name='image' id='file' onchange='loadFile(event)'' style='display: none;''></p><p><label for='file' style='cursor: pointer;''>הוסף תמונה</label></p><p><img id='output' width='800' /></p><div class='edit'> <button onClick='duplicate(this)'> שכפל</button> <button class='delete' onclick='delete_e(this)'> מחק</button>  </div>");
+            $(".section2 .information" + currentTab).append("<div  class='element'  id='el-" + i + "'><p><input type='file' accept='image/*'' name='image' id='file' onchange='loadFile(event)'' style='display: none;''></p><p><label for='file' style='cursor: pointer;''>לחצו כאן להוספת תמונה</label></p><p><img class='img_info' id='output' /></p>" + txt_edit);
             drag();
         })()
 
     });
 
+    $("#range").click(function() {
+        (async() => {
 
+            const {
+                value: formValues
+            } = await Swal.fire({
+                title: 'הכנס שאלה עם אפשרות לדירוג 1-10',
+                html: ' <input id="swal-input" class="swal2-input"><br>',
+                focusConfirm: false,
+                preConfirm: () => {
+                    return [
+                        $('#swal-input').val(),
+                    ]
+                }
+            })
+
+            if (formValues) {
+
+                i++;
+                range_i++;
+                $(".section2 .information" + currentTab).append("<div  class='element el-range'  id='el-" + i + "'>   <div class='range-wrap' contenteditable='true'> " + formValues[0] + "<input type='range' class='range' min='1' max='10'><output class='bubble'></output></div>" + txt_edit + "</div>");
+
+            }
+            range();
+            drag();
+        })()
+
+
+    });
+
+
+
+    $("#options").click(function() {
+        (async() => {
+
+            const { value: formValues } = await Swal.fire({
+                title: 'אפשרויות ההחלטה',
+                html: '<p>אפשרות א:<input id="swal-input1" class="swal2-input"></p>' +
+                    '<p>אפשרות ב:<input id="swal-input2" class="swal2-input"></p>',
+                focusConfirm: false,
+                preConfirm: () => {
+                    return [
+                        $('#swal-input1').val(),
+                        $('#swal-input2').val()
+                    ]
+                }
+            })
+
+            if (formValues) {
+                i++;
+
+                $(".options").append("<div  class='element'  id='el-" + i + "'><p class='option1 edit_text' contenteditable='true'>" + formValues[0] + "</p><p class='option2 edit_text' contenteditable='true'>" + formValues[1] + "</p>" + txt_edit + "</div>");
+                $(".information4 .options1").text(formValues[0]);
+                $(".information4 .options2").text(formValues[1]);
+            }
+            drag();
+        })()
+
+    });
 
     $("#save").click(function() {
 
@@ -187,12 +249,12 @@ function duplicate(this_el) {
     // console.log(itm);
 
     var elem = $(this_el).parents('.element');
-    var clone = elem.clone().appendTo(".section2");
+    var clone = elem.clone().appendTo(".section2 .information");
     clone.removeAttr('id');
 
-    i++;
-    clone.attr("id", "el" + i);
-    $(this_el).find(".update").text("לאחר השינויים יש לשמור");
+    // i++;
+    // clone.attr("id", "el" + i);
+    // $(this_el).find(".update").text("לאחר השינויים יש לשמור");
 
     radio_i++;
     clone.find("input").attr("name", "radio" + i);
@@ -226,5 +288,285 @@ function checkEdits() {
 
     //find out if the user has previously saved edits
     if (localStorage.userEdits != null)
+
         $(".edit_text").text(localStorage.userEdits);
+}
+
+////////////////////////////////////////
+var currentTab = 0;
+var stop = 0;
+var url;
+
+function showTab(n) {
+    // This function will display the specified tab of the form...
+    var x = document.getElementsByClassName("tab_from");
+    x[n].style.display = "block";
+    //... and fix the Previous/Next buttons:
+    if (n == 0) {
+        document.getElementById("prevBtn").style.display = "none";
+    } else {
+        document.getElementById("prevBtn").style.display = "inline";
+    }
+    if (n == (x.length - 1)) {
+        document.getElementById("nextBtn").innerHTML = "שליחת טופס";
+        document.getElementById("nextBtn").style.display = "none";
+    } else {
+        document.getElementById("nextBtn").style.display = "inline";
+        document.getElementById("nextBtn").innerHTML = "הבא &gt;";
+    }
+
+    var currentTab = 0;
+
+    //... and run a function that will display the correct step indicator:
+    fixStepIndicator(n)
+}
+
+
+
+function nextPrev(n) {
+    // This function will figure out which tab to display
+    var x = document.getElementsByClassName("tab_from");
+    // Exit the function if any field in the current tab is invalid:
+    if (n == 1 && !validateForm()) return false;
+    // Hide the current tab:
+    x[currentTab].style.display = "none";
+    // Increase or decrease the current tab by 1:
+    currentTab = currentTab + n;
+    console.log(currentTab);
+    // if you have reached the end of the form...
+    if (currentTab >= x.length) {
+        // ... the form gets submitted:
+        document.getElementById("regForm").submit();
+        //    location.href = "send.html";
+
+
+
+        // console.log("חיעחיעח");
+        // location.href = "send.html";
+        return false;
+    }
+
+    if (currentTab == 1) {
+
+        $(".section1").show();
+
+
+    }
+
+    if (currentTab == 2) {
+
+
+
+    }
+
+
+
+    // Otherwise, display the correct tab:
+    showTab(currentTab);
+}
+
+function validateForm() {
+    // This function deals with validation of the form fields
+    var x, y, i, valid = true;
+    x = document.getElementsByClassName("tab_from");
+    y = x[currentTab].getElementsByClassName("required");
+    var tel = $('#tel').val();
+    var email = $('#email').val();
+    var tz = $('#tz').val();
+    var day = $('#day').val();
+    var mon = $('#mon').val();
+    var year = $('#year').val();
+
+    // A loop that checks every input field in the current tab:
+    // for (i = 0; i < y.length; i++) {
+    //     // If a field is empty...
+    //     if (y[i].value == "") {
+    //         // add an "invalid" class to the field:
+    //         y[i].className += " invalid";
+
+
+
+    //         // and set the current valid status to false
+    //         valid = false;
+    //     }
+    // if (!validNumber(tel)) {
+    //     alert("נא למלא את מספר הטלפון בצורה הנכונה")
+    //     return false;
+    // }
+    // if (!validMail(email)) {
+    //     alert('אנא מלא דוא"ל תקניּ')
+    //     return false;
+    // }
+
+    // if (currentTab == 1) {
+
+    //     if (day > 31 || day < 1) {
+    //         alert('נא למלא יום באופן תקני')
+    //         return false;
+    //     }
+
+    //     if (mon > 12 || mon < 1) {
+    //         alert('נא למלא חודש באופן תקני')
+    //         return false;
+    //     }
+    //     if (year > 2000 || year < 1900) {
+
+    //         alert('נא למלא שנה באופן תקני')
+    //         return false;
+    //     }
+
+
+    // }
+
+
+    //  }
+
+    //   console.log(currentTab);
+    // if (currentTab == 3) {
+    //     x = $("#signature").jSignature('getData', 'base30')[1].length > 20 ? 0 : 1;
+    //     if (x == 1) {
+    //         alert('בבקשה לחתום..');
+    //         valid = false;
+    //     }
+    // }
+
+    // If the valid status is true, mark the step as finished and valid:
+    if (valid) {
+        document.getElementsByClassName("step")[currentTab].className += " finish";
+    }
+    return valid; // return the valid status
+}
+
+function fixStepIndicator(n) {
+    // This function removes the "active" class of all steps...
+    var i, x = document.getElementsByClassName("step");
+    for (i = 0; i < x.length; i++) {
+        x[i].className = x[i].className.replace(" active", "");
+    }
+    //... and adds the "active" class on the current step:
+    x[n].className += " active";
+}
+
+function validNumber(num) //if valid number - return true
+{
+    var re = /^0\d([\d]{0,1})([-]{0,1})\d{7}$/;
+    return re.test(num);
+}
+
+function validMail(strEmail) //if valid mail - return true
+{
+    var r, re;
+    var email = new String(strEmail);
+    re = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/ig;
+    if (email.search(re) == 0)
+        return true;
+    else
+        return false;
+}
+
+////////////////////////////////////
+
+
+$(document).ready(function() {
+    range();
+
+    const file = "";
+    // $('#referrer').val(document.referrer);
+    showTab(currentTab);
+    // var uploadField = document.getElementById("file");
+
+    // uploadField.onchange = function() {
+    //     if (this.files[0].size > 500000) {
+    //         alert("הקובץ גדול מידי!");
+    //         this.value = "";
+
+    //     };
+    // };
+
+
+
+
+
+    $("#regForm").submit(function() {
+
+
+        $("#submit_btn").prop("disabled", true);
+
+
+        // var data = $("form").serialize();
+        var data2 = {};
+        $("form").serializeArray().map(function(x) { data2[x.name] = x.value; });
+
+        send_again(data2);
+
+
+        return false;
+    });
+
+
+
+    function send_again(data2) {
+        var ok;
+
+
+        data2.text_long2 = "https://join.zionutdatit.org.il/pdf_cv/" + data2.tz + ".pdf";
+
+
+        $.ajax({
+            method: "post",
+            data: data2,
+            // contentType: "application/x-www-form-urlencoded",
+            // url: "https://closeapp.co.il/campaigns/?project=ichood_leumi&id=133&action=create",
+            success: function(answer) {
+                if (answer.success) {
+
+                    $(".main").hide();
+                    $(".toda").show();
+                    getPdf(data2).finally(() => {
+
+                    });
+                } else {
+                    alert("שגיאה בשליחת הנתונים");
+                }
+            },
+
+
+        });
+
+    }
+
+
+
+
+
+    /////////////////מד/////////
+
+});
+
+function range()
+
+{
+
+    const allRanges = document.querySelectorAll(".range-wrap");
+    allRanges.forEach(wrap => {
+        const range = wrap.querySelector(".range");
+        const bubble = wrap.querySelector(".bubble");
+
+        range.addEventListener("input", () => {
+            setBubble(range, bubble);
+        });
+        setBubble(range, bubble);
+    });
+}
+
+
+function setBubble(range, bubble) {
+    const val = range.value;
+    const min = range.min ? range.min : 0;
+    const max = range.max ? range.max : 10;
+    const newVal = Number(((val - min) * 100) / (max - min));
+    bubble.innerHTML = val;
+
+    // Sorta magic numbers based on size of the native UI thumb
+    bubble.style.right = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
 }
