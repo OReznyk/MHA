@@ -4,4 +4,5 @@ To populate database with default data:
         "flask add_default_gender"
         "flask add_default_permissions"
         "flask add_default_admin"
+        "flask add_default_role"
 To run the app: run main.py from api or from command line (project dir): "python main.py" or "flask run"

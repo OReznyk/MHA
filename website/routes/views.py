@@ -44,6 +44,7 @@ def builder():
         a = Answer(answer=answer_form.answer.data, type=answer_form.type.data, weight=answer_form.weight.data)
         answers.append(a)
     elif research_form.validate_on_submit():
+        # add questions to questioner
         questioner = Questioner(title=questioner_form.title.data, content=questioner_form.content.data)
         for q in questions:
             questioner.question.append(q)
@@ -51,21 +52,22 @@ def builder():
         questioners.append(questioner)
         db.session.add(questioner)
     elif research_form.validate_on_submit():
-        #TODO: get participants as well
-        #TODO: check if save or publish
+        # TODO: get participants as well
         r = Research(title=research_form.title.data, content=research_form.content.data)
+        # add questioners to research
         for q in questioners:
             r.questioner.append(q)
             questioners.remove(q)
         if research_form.publish.validate(research_form):
             if str(current_user.permission) != 'חוקר':
                 r.waiting_to_approval = True
-            else:
+            elif current_user.permission_confirmation and str(current_user.permission) == 'חוקר':
                 r.approved = True
         db.session.add(r)
-
+        # add user as participant in research
         p = Participants(research_id=r.id, participant_id=current_user.id)
         db.session.add(p)
+        # add user as research creator
         role = Role.query.filter_by(role='מחבר').first()
         role.participant.append(p)
         db.session.add(role)
@@ -86,25 +88,32 @@ def about():
 @views.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
+    # TODO: set dashboard functions: approval from admin & researcher
     # if user has no permission_confirmation -> it`s regular user
     table_name = 'מחקרים'
     table = Participants.query.filter_by(participant_id=current_user.id).all()
-    # else
+    # TODO: add table_headers for each table view
+    table_headers = []
+    # else change data-view by permissions
     if current_user.permission_confirmation and not str(current_user.permission) == "נחקר":
         if str(current_user.permission) == "מנהל":
             table_name = 'משתמשים לאישור הרשאות'
             table = User.query.filter_by(permission_confirmation=False).all()
-        elif str(current_user.permission) == 'חוקר' or str(current_user.permission) == 'עוזר מחקר':
-            return render_template("dashboard.html", table_name=table_name, table=Participants.query.filter_by(participant_id=current_user.id).all())
+        elif str(current_user.permission) == 'עוזר מחקר':
+            table = Participants.query.filter_by(participant_id=current_user.id).all()
+        elif str(current_user.permission) == 'חוקר':
+            table_name = 'מחקרים לאישור פרסום'
+            table = Participants.query.filter_by(participant_id=current_user.id, waiting_to_approval=True).all()
         else:
             flash('הרשאות לא הוגדרו', 'error')
 
-    return render_template("dashboard.html", table=table, table_name=table_name)
+    return render_template("dashboard.html", table_headers=table_headers, table=table, table_name=table_name)
 
 
 @views.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
+    # TODO: add delete option
     if current_user.is_authenticated:
         form = UpdateAccountForm()
         if form.validate_on_submit():
@@ -112,16 +121,15 @@ def profile():
             current_user.second_name = form.name.data
             current_user.email = form.email.data
             current_user.birth_date = form.birthdate.data
-            user = current_user
             g = db.session.query(Gender).filter_by(gender=form.gender.data).first()
-            g.users.append(user)
+            g.users.append(current_user)
             if current_user.permission != form.permissions.data:
                 if form.permissions.data == "נחקר":
                     current_user.permission_confirmation = True
                 else:
                     current_user.permission_confirmation = False
                 p = Permissions.query.filter_by(permission=form.permissions.data).first()
-                p.users.append(user)
+                p.users.append(current_user)
             db.session.commit()
             flash('שינויים נשמרו בהצלחה', 'success')
         elif request.method == 'GET':
@@ -131,7 +139,7 @@ def profile():
             form.birthdate.data = current_user.birth_date
             form.gender.data = current_user.gender
             form.permissions.data = current_user.permission
-        return render_template("profile.html", user=user, form=form)
+        return render_template("profile.html", user=current_user, form=form)
     else:
         flash('משתמש לא מחובר', 'error')
         return redirect(url_for('auth.login'))
