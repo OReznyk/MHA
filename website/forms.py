@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SelectField, SubmitField, TextAreaField, FloatField
-from wtforms.validators import InputRequired, Email, Length, EqualTo, ValidationError
+from sqlalchemy.exc import SQLAlchemyError
+from wtforms import StringField, PasswordField, BooleanField, SelectField, SubmitField, TextAreaField, FloatField, IntegerField
+from wtforms.validators import InputRequired, Email, Length, EqualTo, ValidationError, NumberRange
 from wtforms.fields.html5 import DateField
 from datetime import date
 from flask_login import current_user
@@ -17,8 +18,15 @@ class LoginForm(FlaskForm):
 
 
 class RegistrationForm(FlaskForm):
-    genderList = Gender.query.all()
-    permissionsList = Permissions.query.all()
+    genderList = ''
+    permissionsList = ''
+    try:
+        genderList = Gender.query.all()
+        permissionsList = Permissions.query.all()
+    except SQLAlchemyError as e:
+        error = str(e.__dict__['orig'])
+        print(error)
+        pass
 
     email = StringField('אימייל', validators=[InputRequired(), Email(message='Invalid email'), Length(max=100)])
     firstname = StringField('שם משפחה', validators=[InputRequired(), Length(min=2, max=50)])
@@ -38,8 +46,15 @@ class RegistrationForm(FlaskForm):
 
 
 class UpdateAccountForm(FlaskForm):
-    genderList = Gender.query.all()
-    permissionsList = Permissions.query.all()
+    genderList = ''
+    permissionsList = ''
+    try:
+        genderList = Gender.query.all()
+        permissionsList = Permissions.query.all()
+    except SQLAlchemyError as e:
+        error = str(e.__dict__['orig'])
+        print(error)
+        pass
 
     email = StringField('אימייל', validators=[InputRequired(), Email(message='Invalid email'), Length(max=100)])
     firstname = StringField('שם משפחה', validators=[InputRequired(), Length(min=2, max=50)])
@@ -56,10 +71,17 @@ class UpdateAccountForm(FlaskForm):
                 raise ValidationError('שמירה נכשלה: משתמש קיים')
 
 
-class ArticleForm(FlaskForm):
+class BasicForm(FlaskForm):
     title = StringField('כותרת', validators=[InputRequired(), Length(min=2, max=150)])
     content = TextAreaField('תוכן', validators=[InputRequired(), Length(min=5, max=150000)])
     submit = SubmitField('שמירה')
+
+
+class ResearchForm(FlaskForm):
+    title = StringField('כותרת', validators=[InputRequired(), Length(min=2, max=500)])
+    content = TextAreaField('תוכן', validators=[InputRequired(), Length(min=5, max=250000)])
+    save = SubmitField('שמירה')
+    publish = SubmitField('פירסום')
 
 
 class QuestionForm(FlaskForm):
@@ -67,6 +89,7 @@ class QuestionForm(FlaskForm):
     question = StringField('שאלה', validators=[InputRequired(), Length(min=2, max=250)])
     weight = FloatField('משקל %', validators=[InputRequired(), Length(min=2, max=150)])
     type = SelectField(u'סוג שאלה', choices=questionsTypesList)
+    place = IntegerField('rating', validators=[InputRequired(), NumberRange(min=0, max=500)])
 
 
 class AnswerForm(FlaskForm):

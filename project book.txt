@@ -1,2 +1,7 @@
-To create database run from command line (project dir): "flask create_tables"
+To create database run from command line (project dir):
+        "flask create_tables"
+To populate database with default data:
+        "flask add_default_gender"
+        "flask add_default_permissions"
+        "flask add_default_admin"
 To run the app: run main.py from api or from command line (project dir): "python main.py" or "flask run"

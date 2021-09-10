@@ -1,7 +1,10 @@
 from flask import Flask
-from .commands import create_tables
+
+from .commands import *
 import config
-from .extensions import db, bootstrap, bcrypt, login_manager, csrf, session
+from .extensions import db, bcrypt, bootstrap, login_manager, csrf, session
+from website.models import questioner, question, answer, research, gender, user, article, message, permissions
+from website.models import research_participants, role, response
 
 
 def create_app(config_name):
@@ -20,7 +23,15 @@ def create_app(config_name):
     csrf.init_app(app)
     bootstrap.init_app(app)
     login_manager.init_app(app)
+
+    # commands initialization
     app.cli.add_command(create_tables)
+    app.cli.add_command(drop_db)
+    app.cli.add_command(reset_db)
+    app.cli.add_command(add_default_gender)
+    app.cli.add_command(add_default_permissions)
+    app.cli.add_command(add_default_admin)
+    app.cli.add_command(add_default_role)
 
     # importing blueprints
     from website.routes.views import views
@@ -35,6 +46,3 @@ def create_app(config_name):
     login_manager.login_message = u"תכנסו בבקשה"
     login_manager.login_message_category = 'info'
     return app
-
-# models configurations
-
