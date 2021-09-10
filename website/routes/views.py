@@ -17,6 +17,10 @@ def home():
 def builder():
     return render_template("template_builder.html")
 
+@views.route('/builder2')
+def builder2():
+    return render_template("template_builder2.html")
+
 
 @views.route('/contact', methods=['GET', 'POST'])
 def contact():

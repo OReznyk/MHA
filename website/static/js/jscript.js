@@ -44,6 +44,30 @@ $(document).ready(function() {
 
     });
 
+    $("#yes_no").click(function() {
+        (async() => {
+
+            const {
+                value: text
+            } = await Swal.fire({
+                input: 'textarea',
+                inputLabel: 'הכנס טקסט',
+                inputPlaceholder: 'הקלד טקסט ארוך...',
+                inputAttributes: {
+                    'aria-label': 'הקלד טקסט ארוך'
+                },
+                showCancelButton: true
+            })
+
+            if (text) {
+                i++;
+                $(".section2 .information" + currentTab).append("<div  class='element'  id='el-" + i + "'><p class='edit_text' contenteditable='true'>" + text + "</p>" + txt_edit + "</div>");
+            }
+            drag();
+        })()
+
+    });
+
     $("#url").click(function() {
         (async() => {
 
