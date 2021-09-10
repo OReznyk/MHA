@@ -15,13 +15,15 @@
 <div class="">
     <div class="row placeholders">
         <div class="col-xs-6 placeholder right">
-            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="research image">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200"
+                 height="200" class="img-responsive" alt="research image">
             <h4>מחקרים</h4>
             <span class="text-muted">כמות המחקרים</span>
         </div>
 
         <div class="col-xs-6 placeholder">
-            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200"
+                 height="200" class="img-responsive" alt="Generic placeholder thumbnail">
             <h4>הודעות</h4>
             <span class="text-muted">כמות ההודעות</span>
         </div>
@@ -31,16 +33,39 @@
     <div class="table-responsive">
         <table class="table table-striped">
             {% for user in table %}
-            <tr>
-                <td>{{ user.first_name }}</td>
-                <td>{{ user.second_name }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.birth_date }}</td>
-                <td>{{ user.creation_date }}</td>
-                <td>{{ user.permission }}</td>
+            <tr id="user_row" data-toggle="modal" data-target="#user_details_modal">
+                <td class="first_name">{{ user.first_name }}</td>
+                <td class="last_name">{{ user.second_name }}</td>
+                <td class="email">{{ user.email }}</td>
+                <td class="birth_date">{{ user.birth_date }}</td>
+                <td class="creation_date">{{ user.creation_date }}</td>
+                <td class="permission">{{ user.permission }}</td>
+<!--                {% for b in buttons %}-->
+<!--                <button onclick="">{{ b.title }}</button>-->
+<!--                {% endfor %}-->
             </tr>
             {% endfor %}
         </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="user_details_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="#user_modal_body" class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="save_user_changes" type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

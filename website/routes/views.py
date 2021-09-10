@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request
 from flask_login import login_required, current_user
+from jinja2 import Environment, FileSystemLoader
 from website.forms import UpdateAccountForm, QuestionForm, AnswerForm, ResearchForm, BasicForm
 from website.models.gender import Gender
 from website.models.role import Role
@@ -106,6 +107,64 @@ def dashboard():
             table = Participants.query.filter_by(participant_id=current_user.id, waiting_to_approval=True).all()
         else:
             flash('הרשאות לא הוגדרו', 'error')
+
+    env = Environment(loader=FileSystemLoader('/path/to/templates'))
+
+    # TODO: put this functions to other file
+    def query_db(tag, query, table_name):
+        #TODO: delete user properly
+        return 'todo'
+
+    def delete_user(email):
+        #TODO: delete user properly
+        return 'todo'
+
+    def validate_user(email):
+        u = User.query.filter_by(email=email).first()
+        u.permission_confirmation = True
+        db.session.commit
+        return 'todo: check'
+
+    def change_permissions(email, permission):
+        u = User.query.filter_by(email=email).first()
+        u.permission = permission
+        if str(current_user.permission) == "מנהל" or permission == "נחקר":
+            u.permission_confirmation = True
+        db.session.commit
+        return 'todo'
+
+    def validate_research(id):
+        # TODO: if Participants.query.filter_by():
+        r = Research.query.filter_by(id=id).first()
+        r.approved = True
+        r.waiting_to_approval = False
+        db.session.commit
+        return 'todo'
+
+    def delete_research(id):
+        return 'todo'
+
+    def delete_participant(email, id):
+        u = User.query.filter_by(email=email).first()
+        p = Participants.delete().where(Participants.c.participant_id == u.id, Participants.c.research_id == id)
+        p.execute()
+        return 'todo: check'
+
+    def add_participant(email, id):
+        u = User.query.filter_by(email=email).first()
+        p = Participants(research_id=id, participant_id=u.id)
+        db.session.add(p)
+        db.session.commit
+        return 'todo: check'
+
+    # TODO put to init file
+    env.globals['delete_participant'] = delete_participant
+    env.globals['add_participant'] = add_participant
+    env.globals['change_permissions'] = change_permissions
+    env.globals['validate_research'] = validate_research
+    env.globals['validate_user'] = validate_user
+    env.globals['delete_user'] = delete_user
+    env.globals['delete_research'] = delete_research
 
     return render_template("dashboard.html", table_headers=table_headers, table=table, table_name=table_name)
 
