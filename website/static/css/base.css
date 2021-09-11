@@ -247,6 +247,7 @@
 .range-wrap {
     position: relative;
     width: 75%;
+    margin-bottom: 25px;
 }
 
 .bubble {
@@ -357,6 +358,15 @@
     display: none;
 }
 
+.modal-body .tab_from {
+    display: block !important;
+}
+
+.modal-body .nextPrev,
+.modal-body .steps {
+    display: none;
+}
+
 
 /* ///////////////////////////////// */
 
@@ -379,6 +389,7 @@ min-width: 300px; */
     padding: 40px;
     max-width: 870px;
     margin: 0 auto;
+    direction: rtl;
 }
 
 #regForm .btn-primary {
