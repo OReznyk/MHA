@@ -3,13 +3,118 @@ var radio_i = 0
 var range_i = 0;
 var txt_edit = "<div class='edit'> <button class='duplicate' type='button' onClick='duplicate(this)'> שכפל</button> <button type='button' class='delete' onclick='delete_e(this)'> מחק</button></div>"
 
-
-
-
-
-
 $(document).ready(function() {
 
+    const state = {
+        currentUser: {
+            firstName: '',
+            lastName: '',
+            email: '',
+            birtDate: '',
+            creationDate: '',
+            permission: ''
+        }
+    }
+
+    $("#title").click(function() {
+        swal("הכנס כותרת:", {
+                content: "input",
+            })
+            .then((value) => {
+                i++;
+                $(".section2").append("<div  class='element'  id='el-" + i + "'><h2 class='edit_text' contenteditable='true'>" + value + "</h2>  <div class='edit'>    <input type='button' value='שמור שינויים' onclick='saveEdits(this)'/><span class='update'> - ערוך את הטקסט ולחץ לשמור</span> <button onClick='duplicate(this)'> שכפל</button> <button class='delete' onclick='delete_e(this)'> מחק</button>  </div></div>");
+                drag();
+            });
+
+    });
+
+
+    $("#text").click(function() {
+        (async() => {
+
+            const {
+                value: text
+            } = await Swal.fire({
+                input: 'textarea',
+                inputLabel: 'הכנס טקסט',
+                inputPlaceholder: 'הקלד טקסט ארוך...',
+                inputAttributes: {
+                    'aria-label': 'הקלד טקסט ארוך'
+                },
+                showCancelButton: true
+            })
+
+            if (text) {
+                i++;
+                $(".section2").append("<div  class='element'  id='el-" + i + "'><p>" + text + "</p>    <div class='edit'> <button onClick='duplicate(this)'> שכפל</button> <button class='delete' onclick='delete_e(this)'> מחק</button>  </div></div>");
+            }
+            drag();
+        })()
+
+    });
+
+    $("#url").click(function() {
+        (async() => {
+
+            const {
+                value: url
+            } = await Swal.fire({
+                input: 'url',
+                inputLabel: ' הכנס כתובות יוטוב צריך להראות כך: https://www.youtube.com/embed/U2X4Rt8pyXg',
+                inputPlaceholder: 'Enter the URL'
+            })
+
+            if (url) {
+                i++;
+                $(".section2").append("<div  class='element'  id='el-" + i + "'><iframe width='560' height='315' src='" + url + "'> </iframe>    <div class='edit'> <button onClick='duplicate(this)'> שכפל</button> <button class='delete' onclick='delete_e(this)'> מחק</button>  </div></div>");
+
+
+            }
+            drag();
+        })()
+
+
+    });
+
+    $("#question-radio").click(function() {
+        (async() => {
+
+            const {
+                value: formValues
+            } = await Swal.fire({
+                title: 'הכנס שאלה עם אפשרות לתשובה אחת',
+                html: ' שאלה: <input id="swal-input1" class="swal2-input"><br>' +
+                    'תשובה 1<input id="swal-input2" class="swal2-input"><br>' +
+                    'תשובה 2<input id="swal-input3" class="swal2-input"><br>' +
+                    'תשובה 3<input id="swal-input4" class="swal2-input"><br>' +
+                    'תשובה 4<input id="swal-input5" class="swal2-input"><br>',
+                focusConfirm: false,
+                preConfirm: () => {
+                    return [
+                        $('#swal-input1').val(),
+                        $('#swal-input2').val(),
+                        $('#swal-input3').val(),
+                        $('#swal-input4').val(),
+                        $('#swal-input5').val()
+                    ]
+
+
+                }
+            })
+
+            if (formValues) {
+
+                i++;
+                radio_i++;
+                $(".section2").append("<div  class='element el-radio'  id='el-" + i + "'><p>" + formValues[0] + "</p><input type='radio' name='radio" + radio_i + "' value='" + formValues[1] + "'><label for='" + formValues[1] + "'>" + formValues[1] + "</label><br><input type='radio' name='radio" + radio_i + "' value='" + formValues[2] + "'><label for='" + formValues[2] + "'>" + formValues[2] + "</label><br><input type='radio' name='radio" + radio_i + "' value='" + formValues[3] + "'><label for='" + formValues[3] + "'>" + formValues[3] + "</label><br><input type='radio' name='radio" + radio_i + "' value='" + formValues[4] + "'><label for='" + formValues[4] + "'>" + formValues[4] + "</label> <div class='edit'> <button onClick='duplicate(this)'> שכפל</button> <button class='delete' onclick='delete_e(this)'> מחק</button>  </div></div>");
+
+            }
+            drag();
+        })()
+
+
+
+    });
 
     $("#table").click(function() {
         (async() => {
@@ -208,6 +313,16 @@ $(document).ready(function() {
 
     });
 
+    $("#image").click(function() {
+        (async() => {
+            i++;
+            $(".section2").append("<div  class='element'  id='el-" + i + "'><p><input type='file' accept='image/*'' name='image' id='file' onchange='loadFile(event)'' style='display: none;''></p><p><label for='file' style='cursor: pointer;''>הוסף תמונה</label></p><p><img id='output' width='800' /></p><div class='edit'> <button onClick='duplicate(this)'> שכפל</button> <button class='delete' onclick='delete_e(this)'> מחק</button>  </div>");
+            drag();
+        })()
+
+
+    });
+
     $("#question-radio").click(function() {
         (async() => {
 
@@ -343,9 +458,57 @@ $(document).ready(function() {
         $(".modal-body").empty();
     });
 
+
+    $("#save").click(function() {
+
+
+        swal({
+            // position: 'top-end',
+            icon: 'success',
+            title: 'השאלון נשמר',
+            showConfirmButton: false,
+            timer: 2200
+        })
+
+    });
+
+    //////////////
+    $("#myBtn").click(function() {
+        var elem = $('.section2');
+        elem.clone().appendTo(".modal-body");
+
+        $("#myModal").modal();
+    });
+
+    $("#myModal").on('hide.bs.modal', function() {
+        $(".modal-body").empty();
+    });
+
+    $('#user_row').click(function() {
+        state.currentUser = {
+            firstName: $(".first_name").html(),
+            lastName: $(".last_name").html(),
+            email: $(".email").html(),
+            birtDate: $(".birth_date").html(),
+            creationDate: $(".creation_date").html(),
+            permission: $(".permission").html()
+        }
+    });
+
+    $('#user_details_modal').on('show.bs.modal', function() {
+        const userElement =
+            `<div>
+        <div>${state.currentUser.firstName}</div>
+        <div>${state.currentUser.lastName}</div>
+        <div>${state.currentUser.email}</div>
+        <div>${state.currentUser.birtDate}</div>
+        <div>${state.currentUser.creationDate}</div>
+        <div>${state.currentUser.permission}</div>
+     </div>`
+        let modal = $(this);
+        modal.find('.modal-body').html(userElement);
+    });
 });
-
-
 
 function delete_e(e) {
     swal({
@@ -363,7 +526,6 @@ function delete_e(e) {
         });
 
 
-
 }
 
 //////////////גרירה///////////////
@@ -375,6 +537,7 @@ function drag() {
     // });
 
 }
+
 ////////////////העלת תמונה/////////////
 
 
@@ -390,6 +553,7 @@ function duplicate(this_el) {
     // var itm = $(this_el).parents('.element').attr('id');
     // console.log(itm);
 
+
     var elem = $(this_el).parents('.element');
     var clone = elem.clone().appendTo(".section2 .information");
     clone.removeAttr('id');
@@ -397,6 +561,15 @@ function duplicate(this_el) {
     // i++;
     // clone.attr("id", "el" + i);
     // $(this_el).find(".update").text("לאחר השינויים יש לשמור");
+
+    var elem = $(this_el).parents('.element');
+    var clone = elem.clone().appendTo(".section2");
+    clone.removeAttr('id');
+
+    i++;
+    clone.attr("id", "el" + i);
+    $(this_el).find(".update").text("לאחר השינויים יש לשמור");
+
 
     radio_i++;
     clone.find("input").attr("name", "radio" + i);
@@ -427,6 +600,7 @@ function saveEdits(this_el) {
 }
 
 function checkEdits() {
+
 
     //find out if the user has previously saved edits
     if (localStorage.userEdits != null)
@@ -712,3 +886,7 @@ function setBubble(range, bubble) {
     // Sorta magic numbers based on size of the native UI thumb
     bubble.style.right = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
 }
+
+//find out if the user has previously saved edits
+if (localStorage.userEdits != null)
+    $(".edit_text").text(localStorage.userEdits);
