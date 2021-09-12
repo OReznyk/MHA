@@ -195,20 +195,41 @@ $(document).ready(function() {
         (async() => {
 
             const {
-                value: text
+                value: formValues
             } = await Swal.fire({
-                input: 'textarea',
-                inputLabel: 'הכנס טקסט',
-                inputPlaceholder: 'הקלד טקסט ארוך...',
-                inputAttributes: {
-                    'aria-label': 'הקלד טקסט ארוך'
-                },
-                showCancelButton: true
+                title: 'הכנס שאלה עם אפשרות תשובה כן/לא',
+                html: '<p class="option_score"> שאלה: <input id="swal-input1" class="swal2-input">ניקוד <input type="number" id="score-input1" class="swal2-input" ></p> ' +
+                    '<p class="option_yes_no"> <input id="toggle-on" name="toggle" type="radio"><label for="toggle-on">כן</label></p>' +
+                    '<p class="option_yes_no"> <input id="toggle-off" name="toggle" type="radio"><label for="toggle-off">לא</label></p>',
+
+
+
+                focusConfirm: false,
+                preConfirm: () => {
+                    return [
+                        $('#swal-input1').val(),
+                        $('#score-input1').val(),
+                        $('#toggle-on').val(),
+                        $('#toggle-off').val(),
+
+                    ]
+
+
+                }
             })
 
-            if (text) {
+            if (formValues) {
+
                 i++;
-                $(".section2 .information" + currentTab).append("<div  class='element'  id='el-" + i + "'><p class='edit_text' contenteditable='true'>" + text + "</p>" + txt_edit + "</div>");
+                radio_i++;
+                $(".section2 .information" + currentTab).append("<div  class='element el-radio'  id='el-" + i + "'><div class='yes_no'> <p class='option_score' contenteditable='true'>" + formValues[0] + "<span>" + formValues[1] + "</span></p><p class='option_yes_no'> <input id='toggle-on' name='toggle' type='radio'><label for='toggle-on'>כן</label></p><p class='option_yes_no'> <input id='toggle-off' name='toggle' type='radio'><label for='toggle-off'>לא</label></p></div>" + txt_edit + "</div>");
+
+                $('.el-radio .answer').each(function() {
+                    if ($(this).find('.edit-radio').length == 0) {
+                        $(this).prepend('<p class="edit-radio"> <button type="button" onclick="delete_radio(this)" >מחק </button> <button type="button" onclick="duplicate_radio(this)" > שכפל</button>  </p>');
+                    }
+                });
+
             }
             drag();
         })()
@@ -261,7 +282,13 @@ $(document).ready(function() {
 
                 i++;
                 radio_i++;
-                $(".section2 .information" + currentTab).append("<div  class='element el-radio'  id='el-" + i + "'><p class='option_score' contenteditable='true'>" + formValues[0] + "<span>" + formValues[1] + "</span></p><p class='option_score' contenteditable='true'><input type='radio' name='radio" + radio_i + "' value='" + formValues[2] + "'><label for='" + formValues[2] + "'>" + formValues[2] + "</label><span>" + formValues[3] + "</span></p><p class='option_score' contenteditable='true'><input type='radio' name='radio" + radio_i + "' value='" + formValues[4] + "'><label for='" + formValues[4] + "'>" + formValues[4] + "</label><span>" + formValues[5] + "</span></p><p class='option_score' contenteditable='true'><input type='radio' name='radio" + radio_i + "' value='" + formValues[6] + "'><label for='" + formValues[6] + "'>" + formValues[6] + "</label><span>" + formValues[7] + "</span></p>" + txt_edit + "</div>");
+                $(".section2 .information" + currentTab).append("<div  class='element el-radio'  id='el-" + i + "'><div class='div_option'><p class='option_score' contenteditable='true'>" + formValues[0] + "<span>" + formValues[1] + "</span></p><p class='option_score answer' contenteditable='true'><input type='radio' name='radio" + radio_i + "' value='" + formValues[2] + "'><label for='" + formValues[2] + "'>" + formValues[2] + "</label><span>" + formValues[3] + "</span></p><p class='option_score answer'  contenteditable='true'><input type='radio' name='radio" + radio_i + "' value='" + formValues[4] + "'><label for='" + formValues[4] + "'>" + formValues[4] + "</label><span>" + formValues[5] + "</span></p><p class='option_score answer' contenteditable='true'><input type='radio' name='radio" + radio_i + "' value='" + formValues[6] + "'><label for='" + formValues[6] + "'>" + formValues[6] + "</label><span>" + formValues[7] + "</span></p></div>" + txt_edit + "</div>");
+
+                $('.el-radio .answer').each(function() {
+                    if ($(this).find('.edit-radio').length == 0) {
+                        $(this).prepend('<p class="edit-radio"> <button type="button" onclick="delete_radio(this)" >מחק </button> <button type="button" onclick="duplicate_radio(this)" > שכפל</button>  </p>');
+                    }
+                });
 
             }
             drag();
@@ -449,6 +476,33 @@ function duplicate(this_el) {
     drag();
 
 }
+//////////////////////שכפול ומחיקת רדיו///////////
+function delete_radio(this_el) {
+
+    swal({
+            title: "למחוק בטוח?",
+            text: "לאחר שנמחק, לא תוכל לשחזר את האלמנט הזה!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+
+                $(this_el).parents(".answer").remove();
+            }
+        });
+}
+
+function duplicate_radio(this_el) {
+
+    var elem = $(this_el).parents(".answer");
+    // elem.clone().appendTo(".el-radio");
+    // elem.clone().append(elem);
+    $(elem.parents(".div_option")).append(elem.clone());
+}
+
+
 
 /////////////////עריכת טקסט ושינוי/////////
 
