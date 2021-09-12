@@ -2,8 +2,78 @@ var i = 0;
 var radio_i = 0
 var range_i = 0;
 var txt_edit = "<div class='edit'> <button class='duplicate' type='button' onClick='duplicate(this)'> שכפל</button> <button type='button' class='delete' onclick='delete_e(this)'> מחק</button></div>"
+
+
+
+
+
+
 $(document).ready(function() {
 
+
+
+
+    $("#category").click(function() {
+        (async() => {
+
+            const { value: category } = await Swal.fire({
+
+                input: 'select',
+                inputOptions: {
+
+                    בריאות: 'בריאות',
+                    אבחנה: 'אבחנה',
+                    פסיכולגיה: 'פסיכולגיה',
+                    תרופות: 'תרופות',
+                    אחר: 'אחר'
+                },
+                inputPlaceholder: 'בחר קטגוריה',
+                showCancelButton: true,
+                inputValidator: (value) => {
+                    return new Promise((resolve) => {
+                        if (value === 'אחר') {
+                            swal("הוסף קטגוריה חדשה:", {
+                                    content: "input",
+
+                                })
+                                .then((value) => {
+
+                                    $(".category").text(value);
+                                    resolve()
+                                });
+
+
+                        } else {
+                            $(".category").text(value);
+                            resolve()
+                        }
+                    })
+                }
+
+
+            })
+
+
+            // if (text) {
+            //     i++;
+            //     $(".section2 .information" + currentTab).append("<div  class='element'  id='el-" + i + "'><p class='edit_text' contenteditable='true'>" + text + "</p>" + txt_edit + "</div>");
+            // }
+            drag();
+        })()
+
+    });
+
+    $("#subject").click(function() {
+        swal(" מה נושא ההחלטה:", {
+                content: "input",
+
+            })
+            .then((value) => {
+                $(".subject").text(value);
+                drag();
+            });
+
+    });
 
     $("#title").click(function() {
         swal("הכנס כותרת:", {
@@ -177,13 +247,15 @@ $(document).ready(function() {
 
             const { value: formValues } = await Swal.fire({
                 title: 'אפשרויות ההחלטה',
-                html: '<p>אפשרות א:<input id="swal-input1" class="swal2-input"></p>' +
-                    '<p>אפשרות ב:<input id="swal-input2" class="swal2-input"></p>',
+                html: '<p class="option_score">אפשרות א:<input id="swal-input1" class="swal2-input">ניקוד <input type="number" id="score-input1" class="swal2-input" > </p>' +
+                    '<p class="option_score">אפשרות ב:<input id="swal-input2" class="swal2-input">ניקוד <input type="number" id="score-input2" class="swal2-input"> </p>',
                 focusConfirm: false,
                 preConfirm: () => {
                     return [
                         $('#swal-input1').val(),
-                        $('#swal-input2').val()
+                        $('#score-input1').val(),
+                        $('#swal-input2').val(),
+                        $('#score-input2').val()
                     ]
                 }
             })
@@ -191,9 +263,9 @@ $(document).ready(function() {
             if (formValues) {
                 i++;
 
-                $(".options").append("<div  class='element'  id='el-" + i + "'><p class='option1 edit_text' contenteditable='true'>" + formValues[0] + "</p><p class='option2 edit_text' contenteditable='true'>" + formValues[1] + "</p>" + txt_edit + "</div>");
+                $(".options").append("<div  class='element'  id='el-" + i + "'><p class='option1 edit_text' contenteditable='true'>אפשרות א' :" + formValues[0] + "<span>" + formValues[1] + " </span> </p><p class='option2 edit_text' contenteditable='true'>אפשרות ב' :" + formValues[2] + "<span>" + formValues[3] + " </span></p>" + txt_edit + "</div>");
                 $(".information4 .options1").text(formValues[0]);
-                $(".information4 .options2").text(formValues[1]);
+                $(".information4 .options2").text(formValues[2]);
             }
             drag();
         })()

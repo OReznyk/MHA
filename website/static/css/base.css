@@ -182,14 +182,14 @@
 #save {
     bottom: 5%;
     position: fixed;
-    right: 9%;
+    right: 4%;
     font-size: 19px;
 }
 
 .preview {
     bottom: 5%;
     position: fixed;
-    right: 22%;
+    right: 16%;
     font-size: 19px;
 }
 
@@ -210,10 +210,25 @@
 }
 
 .swal2-input,
-.swal2-file,
-.swal2-input,
-.swal2-textarea {
+.swal2-select {
     width: 75% !important;
+    display: inline-block;
+}
+
+.option_score .swal2-input {
+    margin: 1em 5px !important;
+    width: 50% !important;
+}
+
+#score-input1,
+#score-input2 {
+    width: 25% !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .tab_from h2 {
@@ -226,6 +241,15 @@
 
 .options .edit .duplicate {
     display: none;
+}
+
+.options p {
+    position: relative;
+}
+
+.options p span {
+    position: absolute;
+    left: 0;
 }
 
 .img_info {
@@ -276,7 +300,6 @@
 .section2 .el-radio {
     text-align: right;
     font-size: 15px;
-    padding-right: 5%;
 }
 
 .section2 .el-radio label {
@@ -306,6 +329,17 @@
     color: #9e9e9e;
     font-size: 62px;
     font-weight: bold;
+}
+
+.section2 h1 {
+    font-size: 54px;
+    text-shadow: 0px 1px 3px #000000;
+    color: #3a81be;
+    font-weight: bold;
+    width: 80%;
+    vertical-align: middle;
+    display: inline-block;
+    text-align: center;
 }
 
 .section2 p {
@@ -382,12 +416,8 @@
 /* ---------------- section1 ------------------ */
 
 #regForm {
-    /* background-color: #ffffff;
-margin: 100px auto;
-width: 70%;
-min-width: 300px; */
-    padding: 40px;
-    max-width: 870px;
+    padding: 40px 0;
+    /* max-width: 870px; */
     margin: 0 auto;
     direction: rtl;
 }

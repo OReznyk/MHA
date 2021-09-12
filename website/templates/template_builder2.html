@@ -12,25 +12,27 @@
 
 <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 
+
+<!-- <script type="text/javascript" src="{{url_for('static', filename='cleditor/jquery.min.js')}}"></script> -->
 
 <script type="text/javascript" src="{{url_for('static', filename='js/jscript.js')}}"></script>
+
+
 
 
 {% endblock %}
 
 
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+
 
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css" rel="stylesheet" type="text/css" /> -->
 
-
-
-
-
 {% block main_content %}
+
 <h1> צור מחקר</h1>
 <div class="section2">
 
@@ -41,21 +43,17 @@
             <div class="information information0">
                 <h2>ההחלטה- כללי</h2>
 
-                <label for="subject">נושא ההחלטה:</label>
-                <input type="text" id="subject" name="subject">
+                <button type="button" class="btn btn-primary" id="subject"> נושא ההחלטה: </button>
+                <h1 class="subject" contenteditable='true'></h1>
 
+                <button type="button" class="btn btn-primary" id="category"> בחר קטגוריה: </button>
 
-                <label for="category">שיוך לקטגוריה:</label>
-                <select id="category" name="category">
-            <option value="בריאות ">בריאות</option>
-            <option value="פסיכולגיה ">פסיכולגיה</option>
-            <option value="אבחנה ">אבחנה</option>
-            <option value="תרופות הקלה ">תרופות הקלה</option>
-        </select>
+                <span class="category"></span>
+
 
 
                 <br>
-                <button type="button" class="btn btn-primary" id="options"> אפשרויות להחלטה </button>
+                <button type="button" class="btn btn-primary" id="options"> אפשרויות להחלטה: </button>
                 <div class="options">
 
                 </div>
