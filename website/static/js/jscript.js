@@ -11,6 +11,52 @@ var txt_edit = "<div class='edit'> <button class='duplicate' type='button' onCli
 $(document).ready(function() {
 
 
+    $("#table").click(function() {
+        (async() => {
+
+            const {
+                value: formValues
+            } = await Swal.fire({
+                title: 'איזה טבלה תרצו ?',
+                html: ' עמודות: <input id="swal-input1" type="number"  class="swal2-input"><br>' +
+                    'שורות <input id="swal-input2" type="number" class="swal2-input">',
+
+
+                focusConfirm: false,
+                preConfirm: () => {
+                    return [
+                        $('#swal-input1').val(),
+                        $('#swal-input2').val(),
+
+
+                    ]
+
+
+                }
+            })
+
+            if (formValues) {
+
+                i++;
+
+
+                $(".section2 .information" + currentTab).append("<div  class='element'  id='el-" + i + "'><table class='table table-striped'> <tbody> </tbody> </table>" + txt_edit + "</div>");
+                for (var w = 0; w < formValues[1]; w++) {
+                    var $tr = $('<tr></tr>');
+                    for (var j = 0; j < formValues[0]; j++) {
+                        $tr.append('<td contenteditable="true">לחץ לשינוי מלל</td>');
+                    }
+                    $('#el-' + i + ' table tbody').append($tr);
+                }
+
+
+            }
+            drag();
+        })()
+
+
+    });
+
 
 
     $("#category").click(function() {
