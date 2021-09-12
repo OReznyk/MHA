@@ -4,6 +4,10 @@
 
 <script type="text/javascript" src="{{url_for('static', filename='js/jscript.js')}}"></script>
 
+<!-- this script is for text editor from https://ckeditor.com/docs/ckeditor5/latest/builds/guides/quick-start.html -->
+<script src="https://cdn.ckeditor.com/ckeditor5/29.2.0/classic/ckeditor.js"></script>
+<script type="text/javascript"> CKEDITOR.replace('editor')</script>
+
 {% endblock %} {% block navbar %}
 <!-- <link rel="stylesheet" href="//cdn.rawgit.com/morteza/bootstrap-rtl/v3.3.4/dist/css/bootstrap-rtl.min.css"> -->
 <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css" rel="stylesheet" type="text/css" /> -->
