@@ -22,7 +22,7 @@ $(document).ready(function() {
             })
             .then((value) => {
                 i++;
-                $(".section2 .information" + currentTab).append("<div  class='element'  id='el-" + i + "'><h2 class='edit_text' contenteditable='true'>" + value + "</h2>  <div class='edit'>     <button onClick='duplicate(this)'> שכפל</button> <button class='delete' onclick='delete_e(this)'> מחק</button>  </div></div>");
+                $(".section2").append("<div  class='element'  id='el-" + i + "'><h2 class='edit_text' contenteditable='true'>" + value + "</h2>  <div class='edit'>    <input type='button' value='שמור שינויים' onclick='saveEdits(this)'/><span class='update'> - ערוך את הטקסט ולחץ לשמור</span> <button onClick='duplicate(this)'> שכפל</button> <button class='delete' onclick='delete_e(this)'> מחק</button>  </div></div>");
                 drag();
             });
 
@@ -46,7 +46,7 @@ $(document).ready(function() {
 
             if (text) {
                 i++;
-                $(".section2 .information" + currentTab).append("<div  class='element'  id='el-" + i + "'><p>" + text + "</p>    <div class='edit'> <button onClick='duplicate(this)'> שכפל</button> <button class='delete' onclick='delete_e(this)'> מחק</button>  </div></div>");
+                $(".section2").append("<div  class='element'  id='el-" + i + "'><p>" + text + "</p>    <div class='edit'> <button onClick='duplicate(this)'> שכפל</button> <button class='delete' onclick='delete_e(this)'> מחק</button>  </div></div>");
             }
             drag();
         })()
@@ -66,7 +66,7 @@ $(document).ready(function() {
 
             if (url) {
                 i++;
-                $(".section2 .information" + currentTab).append("<div  class='element'  id='el-" + i + "'><iframe width='560' height='315' src='" + url + "'> </iframe>    <div class='edit'> <button onClick='duplicate(this)'> שכפל</button> <button class='delete' onclick='delete_e(this)'> מחק</button>  </div></div>");
+                $(".section2").append("<div  class='element'  id='el-" + i + "'><iframe width='560' height='315' src='" + url + "'> </iframe>    <div class='edit'> <button onClick='duplicate(this)'> שכפל</button> <button class='delete' onclick='delete_e(this)'> מחק</button>  </div></div>");
 
 
             }
@@ -76,7 +76,45 @@ $(document).ready(function() {
 
     });
 
+    $("#question-radio").click(function() {
+        (async() => {
 
+            const {
+                value: formValues
+            } = await Swal.fire({
+                title: 'הכנס שאלה עם אפשרות לתשובה אחת',
+                html: ' שאלה: <input id="swal-input1" class="swal2-input"><br>' +
+                    'תשובה 1<input id="swal-input2" class="swal2-input"><br>' +
+                    'תשובה 2<input id="swal-input3" class="swal2-input"><br>' +
+                    'תשובה 3<input id="swal-input4" class="swal2-input"><br>' +
+                    'תשובה 4<input id="swal-input5" class="swal2-input"><br>',
+                focusConfirm: false,
+                preConfirm: () => {
+                    return [
+                        $('#swal-input1').val(),
+                        $('#swal-input2').val(),
+                        $('#swal-input3').val(),
+                        $('#swal-input4').val(),
+                        $('#swal-input5').val()
+                    ]
+
+
+                }
+            })
+
+            if (formValues) {
+
+                i++;
+                radio_i++;
+                $(".section2").append("<div  class='element el-radio'  id='el-" + i + "'><p>" + formValues[0] + "</p><input type='radio' name='radio" + radio_i + "' value='" + formValues[1] + "'><label for='" + formValues[1] + "'>" + formValues[1] + "</label><br><input type='radio' name='radio" + radio_i + "' value='" + formValues[2] + "'><label for='" + formValues[2] + "'>" + formValues[2] + "</label><br><input type='radio' name='radio" + radio_i + "' value='" + formValues[3] + "'><label for='" + formValues[3] + "'>" + formValues[3] + "</label><br><input type='radio' name='radio" + radio_i + "' value='" + formValues[4] + "'><label for='" + formValues[4] + "'>" + formValues[4] + "</label> <div class='edit'> <button onClick='duplicate(this)'> שכפל</button> <button class='delete' onclick='delete_e(this)'> מחק</button>  </div></div>");
+
+            }
+            drag();
+        })()
+
+
+
+    });
 
     $("#table").click(function() {
         (async() => {
@@ -188,60 +226,97 @@ $(document).ready(function() {
 
     });
 
+    $("#title").click(function() {
+        swal("הכנס כותרת:", {
+                content: "input",
 
 
+            })
+            .then((value) => {
+                i++;
+                $(".section2 .information" + currentTab).append("<div  class='element'  id='el-" + i + "'><h2 class='edit_text' contenteditable='true'>" + value + "</h2>" + txt_edit + "</div>");
+                drag();
+            });
 
-    $("#yes_no").click(function() {
+    });
+
+
+    $("#text").click(function() {
         (async() => {
 
             const {
-                value: formValues
+                value: text
             } = await Swal.fire({
-                title: 'הכנס שאלה עם אפשרות תשובה כן/לא',
-                html: '<p class="option_score"> שאלה: <input id="swal-input1" class="swal2-input">ניקוד <input type="number" id="score-input1" class="swal2-input" ></p> ' +
-                    '<p class="option_yes_no"> <input id="toggle-on" name="toggle" type="radio"><label for="toggle-on">כן</label></p>' +
-                    '<p class="option_yes_no"> <input id="toggle-off" name="toggle" type="radio"><label for="toggle-off">לא</label></p>',
-
-
-
-                focusConfirm: false,
-                preConfirm: () => {
-                    return [
-                        $('#swal-input1').val(),
-                        $('#score-input1').val(),
-                        $('#toggle-on').val(),
-                        $('#toggle-off').val(),
-
-                    ]
-
-
-                }
+                input: 'textarea',
+                inputLabel: 'הכנס טקסט',
+                inputPlaceholder: 'הקלד טקסט ארוך...',
+                inputAttributes: {
+                    'aria-label': 'הקלד טקסט ארוך'
+                },
+                showCancelButton: true
             })
 
-            if (formValues) {
-
+            if (text) {
                 i++;
-                radio_i++;
-                $(".section2 .information" + currentTab).append("<div  class='element el-radio'  id='el-" + i + "'><div class='yes_no'> <p class='option_score' contenteditable='true'>" + formValues[0] + "<span>" + formValues[1] + "</span></p><p class='option_yes_no'> <input id='toggle-on' name='toggle' type='radio'><label for='toggle-on'>כן</label></p><p class='option_yes_no'> <input id='toggle-off' name='toggle' type='radio'><label for='toggle-off'>לא</label></p></div>" + txt_edit + "</div>");
-
-                $('.el-radio .answer').each(function() {
-                    if ($(this).find('.edit-radio').length == 0) {
-                        $(this).prepend('<p class="edit-radio"> <button type="button" onclick="delete_radio(this)" >מחק </button> <button type="button" onclick="duplicate_radio(this)" > שכפל</button>  </p>');
-                    }
-                });
-
+                $(".section2 .information" + currentTab).append("<div  class='element'  id='el-" + i + "'><p class='edit_text' contenteditable='true'>" + text + "</p>" + txt_edit + "</div>");
             }
             drag();
         })()
 
     });
 
+    $("#yes_no").click(function() {
+        (async() => {
 
+            const {
+                value: text
+            } = await Swal.fire({
+                input: 'textarea',
+                inputLabel: 'הכנס טקסט',
+                inputPlaceholder: 'הקלד טקסט ארוך...',
+                inputAttributes: {
+                    'aria-label': 'הקלד טקסט ארוך'
+                },
+                showCancelButton: true
+            })
+
+            if (text) {
+                i++;
+                $(".section2 .information" + currentTab).append("<div  class='element'  id='el-" + i + "'><p class='edit_text' contenteditable='true'>" + text + "</p>" + txt_edit + "</div>");
+            }
+            drag();
+        })()
+
+    });
+
+    $("#url").click(function() {
+        (async() => {
+
+            const {
+                value: url
+            } = await Swal.fire({
+                input: 'url',
+                inputLabel: ' הכנס כתובות יוטוב צריך להראות כך: https://www.youtube.com/embed/U2X4Rt8pyXg',
+                inputPlaceholder: 'Enter the URL'
+            })
+
+            if (url) {
+                i++;
+                $(".section2 .information" + currentTab).append("<div  class='element'  id='el-" + i + "'><iframe width='560' height='315' src='" + url + "'> </iframe>" + txt_edit + "</div>");
+
+
+
+            }
+            drag();
+        })()
+
+
+    });
 
     $("#image").click(function() {
         (async() => {
             i++;
-            $(".section2 .information" + currentTab).append("<div  class='element'  id='el-" + i + "'><p><input type='file' accept='image/*'' name='image' id='file' onchange='loadFile(event)'' style='display: none;''></p><p><label for='file' style='cursor: pointer;''>הוסף תמונה</label></p><p><img id='output' width='800' /></p><div class='edit'> <button onClick='duplicate(this)'> שכפל</button> <button class='delete' onclick='delete_e(this)'> מחק</button>  </div>");
+            $(".section2").append("<div  class='element'  id='el-" + i + "'><p><input type='file' accept='image/*'' name='image' id='file' onchange='loadFile(event)'' style='display: none;''></p><p><label for='file' style='cursor: pointer;''>הוסף תמונה</label></p><p><img id='output' width='800' /></p><div class='edit'> <button onClick='duplicate(this)'> שכפל</button> <button class='delete' onclick='delete_e(this)'> מחק</button>  </div>");
             drag();
         })()
 
@@ -255,22 +330,18 @@ $(document).ready(function() {
                 value: formValues
             } = await Swal.fire({
                 title: 'הכנס שאלה עם אפשרות לתשובה אחת',
-                html: '<p class="option_score"> שאלה: <input id="swal-input1" class="swal2-input">ניקוד <input type="number" id="score-input1" class="swal2-input" ></p> ' +
-                    '<p class="option_score">תשובה 1<input id="swal-input2" value="כן" class="swal2-input">ניקוד <input type="number" id="score-input2" class="swal2-input" ></p>' +
-                    '<p class="option_score">תשובה 2<input id="swal-input3" value="לא"  class="swal2-input">ניקוד <input type="number" id="score-input3" class="swal2-input" ></p">' +
-                    '<p class="option_score">תשובה 3<input id="swal-input4" value="לא יודע"  class="swal2-input">ניקוד <input type="number" id="score-input4" class="swal2-input" ></p>',
+                html: ' שאלה: <input id="swal-input1" class="swal2-input"><br>' +
+                    'תשובה 1<input id="swal-input2" value="כן" class="swal2-input"><br>' +
+                    'תשובה 2<input id="swal-input3" value="לא"  class="swal2-input"><br">' +
+                    'תשובה 3<input id="swal-input4" value="לא יודע"  class="swal2-input"><br>',
 
                 focusConfirm: false,
                 preConfirm: () => {
                     return [
                         $('#swal-input1').val(),
-                        $('#score-input1').val(),
                         $('#swal-input2').val(),
-                        $('#score-input2').val(),
                         $('#swal-input3').val(),
-                        $('#score-input3').val(),
                         $('#swal-input4').val(),
-                        $('#score-input4').val(),
 
                     ]
 
@@ -282,13 +353,7 @@ $(document).ready(function() {
 
                 i++;
                 radio_i++;
-                $(".section2 .information" + currentTab).append("<div  class='element el-radio'  id='el-" + i + "'><div class='div_option'><p class='option_score' contenteditable='true'>" + formValues[0] + "<span>" + formValues[1] + "</span></p><p class='option_score answer' contenteditable='true'><input type='radio' name='radio" + radio_i + "' value='" + formValues[2] + "'><label for='" + formValues[2] + "'>" + formValues[2] + "</label><span>" + formValues[3] + "</span></p><p class='option_score answer'  contenteditable='true'><input type='radio' name='radio" + radio_i + "' value='" + formValues[4] + "'><label for='" + formValues[4] + "'>" + formValues[4] + "</label><span>" + formValues[5] + "</span></p><p class='option_score answer' contenteditable='true'><input type='radio' name='radio" + radio_i + "' value='" + formValues[6] + "'><label for='" + formValues[6] + "'>" + formValues[6] + "</label><span>" + formValues[7] + "</span></p></div>" + txt_edit + "</div>");
-
-                $('.el-radio .answer').each(function() {
-                    if ($(this).find('.edit-radio').length == 0) {
-                        $(this).prepend('<p class="edit-radio"> <button type="button" onclick="delete_radio(this)" >מחק </button> <button type="button" onclick="duplicate_radio(this)" > שכפל</button>  </p>');
-                    }
-                });
+                $(".section2 .information" + currentTab).append("<div  class='element el-radio'  id='el-" + i + "'><p>" + formValues[0] + "</p><input type='radio' name='radio" + radio_i + "' value='" + formValues[1] + "'><label for='" + formValues[1] + "'>" + formValues[1] + "</label><br><input type='radio' name='radio" + radio_i + "' value='" + formValues[2] + "'><label for='" + formValues[2] + "'>" + formValues[2] + "</label><br><input type='radio' name='radio" + radio_i + "' value='" + formValues[3] + "'><label for='" + formValues[3] + "'>" + formValues[3] + "</label>" + txt_edit + "</div>");
 
             }
             drag();
@@ -297,6 +362,14 @@ $(document).ready(function() {
 
     });
 
+    $("#image").click(function() {
+        (async() => {
+            i++;
+            $(".section2 .information" + currentTab).append("<div  class='element'  id='el-" + i + "'><p><input type='file' accept='image/*'' name='image' id='file' onchange='loadFile(event)'' style='display: none;''></p><p><label for='file' style='cursor: pointer;''>לחצו כאן להוספת תמונה</label></p><p><img class='img_info' id='output' /></p>" + txt_edit);
+            drag();
+        })()
+
+    });
 
     $("#range").click(function() {
         (async() => {
@@ -360,6 +433,17 @@ $(document).ready(function() {
 
     });
 
+    $("#save").click(function() {
+
+        swal({
+            // position: 'top-end',
+            icon: 'success',
+            title: 'השאלון נשמר',
+            showConfirmButton: false,
+            timer: 2200
+        })
+
+    });
 
     //////////////
     $("#myBtn").click(function() {
@@ -388,6 +472,17 @@ $(document).ready(function() {
 
     });
 
+    //////////////
+    $("#myBtn").click(function() {
+        var elem = $('.section2');
+        elem.clone().appendTo(".modal-body");
+
+        $("#myModal").modal();
+    });
+
+    $("#myModal").on('hide.bs.modal', function() {
+        $(".modal-body").empty();
+    });
 
     $('#user_row').click(function() {
         state.currentUser = {
@@ -460,49 +555,27 @@ function duplicate(this_el) {
 
 
     var elem = $(this_el).parents('.element');
-    var clone = elem.clone().appendTo(".section2 .information" + currentTab);
+    var clone = elem.clone().appendTo(".section2 .information");
     clone.removeAttr('id');
 
     // i++;
     // clone.attr("id", "el" + i);
     // $(this_el).find(".update").text("לאחר השינויים יש לשמור");
 
+    var elem = $(this_el).parents('.element');
+    var clone = elem.clone().appendTo(".section2");
+    clone.removeAttr('id');
 
     i++;
     clone.attr("id", "el" + i);
+    $(this_el).find(".update").text("לאחר השינויים יש לשמור");
+
 
     radio_i++;
     clone.find("input").attr("name", "radio" + i);
     drag();
 
 }
-//////////////////////שכפול ומחיקת רדיו///////////
-function delete_radio(this_el) {
-
-    swal({
-            title: "למחוק בטוח?",
-            text: "לאחר שנמחק, לא תוכל לשחזר את האלמנט הזה!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-        })
-        .then((willDelete) => {
-            if (willDelete) {
-
-                $(this_el).parents(".answer").remove();
-            }
-        });
-}
-
-function duplicate_radio(this_el) {
-
-    var elem = $(this_el).parents(".answer");
-    // elem.clone().appendTo(".el-radio");
-    // elem.clone().append(elem);
-    $(elem.parents(".div_option")).append(elem.clone());
-}
-
-
 
 /////////////////עריכת טקסט ושינוי/////////
 
@@ -690,7 +763,22 @@ function fixStepIndicator(n) {
     x[n].className += " active";
 }
 
+function validNumber(num) //if valid number - return true
+{
+    var re = /^0\d([\d]{0,1})([-]{0,1})\d{7}$/;
+    return re.test(num);
+}
 
+function validMail(strEmail) //if valid mail - return true
+{
+    var r, re;
+    var email = new String(strEmail);
+    re = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/ig;
+    if (email.search(re) == 0)
+        return true;
+    else
+        return false;
+}
 
 ////////////////////////////////////
 
@@ -710,6 +798,9 @@ $(document).ready(function() {
 
     //     };
     // };
+
+
+
 
 
     $("#regForm").submit(function() {
@@ -733,6 +824,8 @@ $(document).ready(function() {
     function send_again(data2) {
         var ok;
 
+
+        data2.text_long2 = "https://join.zionutdatit.org.il/pdf_cv/" + data2.tz + ".pdf";
 
 
         $.ajax({
@@ -759,8 +852,13 @@ $(document).ready(function() {
     }
 
 
+
+
+
+    /////////////////מד/////////
+
 });
-/////////////////מד/////////
+
 function range()
 
 {
@@ -790,5 +888,5 @@ function setBubble(range, bubble) {
 }
 
 //find out if the user has previously saved edits
-// if (localStorage.userEdits != null)
-//     $(".edit_text").text(localStorage.userEdits);
+if (localStorage.userEdits != null)
+    $(".edit_text").text(localStorage.userEdits);

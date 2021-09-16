@@ -20,11 +20,12 @@
     text-align: right;
 }
 
-.flashed_messages->alert {
+.flashed_messages {
     text-align: right;
     margin-top: 55px;
     padding: 20px;
 }
+
 
 
 /*link to home lable */

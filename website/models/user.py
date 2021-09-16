@@ -27,6 +27,7 @@ class User(db.Model, UserMixin):
         return '{self.email}', '{self.first_name}', '{self.second_name}', '{self.birth_date}', '{self.gender}', '{self.permission}'
 
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))

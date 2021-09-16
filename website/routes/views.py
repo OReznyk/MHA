@@ -103,6 +103,7 @@ def dashboard():
     if current_user.permission_confirmation and not str(current_user.permission) == "נחקר":
         if str(current_user.permission) == "מנהל":
             table_name = 'משתמשים לאישור הרשאות'
+            table_headers = ['שם', 'שם משפחה', 'אימייל', 'תאריך הרשמה', 'הרשאות']
             table = User.query.filter_by(permission_confirmation=False).all()
         elif str(current_user.permission) == 'עוזר מחקר':
             table = Participants.query.filter_by(participant_id=current_user.id).all()

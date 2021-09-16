@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d7ae0b1-090c-4702-9921-a957c565cb90" name="Default Changelist" comment="corrected dashboard permissions settings &#10;TODO: check with researches">
+    <list default="true" id="4d7ae0b1-090c-4702-9921-a957c565cb90" name="Default Changelist" comment="added ckeditor as text editor. Row click in table opens modal with more row data">
+      <change afterPath="$PROJECT_DIR$/website/templates/article.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/flask_session/847a01ec7ab74629a9d65b4b36ea7adf" beforeDir="false" afterPath="$PROJECT_DIR$/flask_session/847a01ec7ab74629a9d65b4b36ea7adf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/commands.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/commands.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/dbDev.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/website/dbDev.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/models/research.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/models/research.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/models/research_participants.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/models/research_participants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/models/role.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/models/role.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/routes/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/routes/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/models/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/routes/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/routes/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/css/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/css/base.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/js/jscript.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/js/jscript.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/templates/template_builder.html" beforeDir="false" afterPath="$PROJECT_DIR$/website/templates/template_builder.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,6 +83,9 @@
       <module name="MHA" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -199,9 +200,6 @@
       <option name="project" value="LOCAL" />
       <updated>1631113926895</updated>
     </task>
-<<<<<<< HEAD
-    <option name="localTasksCounter" value="13" />
-=======
     <task id="LOCAL-00013" summary="role default creation by command. research/questions/answers saving to db after creation. &#10;TODO: check if ok (no frontend for it yet)">
       <created>1631187053673</created>
       <option name="number" value="00013" />
@@ -223,8 +221,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631294578246</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
->>>>>>> f10e04c73768e557f10804f84f6ee179f7e5dce1
+    <task id="LOCAL-00016" summary="added ckeditor as text editor. Row click in table opens modal with more row data">
+      <created>1631441762788</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1631441762788</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -251,12 +255,9 @@
     <MESSAGE value="bootstrap working. added bootstrap dir with wtf &amp; base htmls code. Changed user`s permissions &amp; gender saving/changing code so it will save id`s &amp; not strings" />
     <MESSAGE value="corrected dashboard permissions settings &amp; string error in permissions default data" />
     <MESSAGE value="corrected dashboard permissions settings &#10;TODO: check with researches" />
-<<<<<<< HEAD
-    <option name="LAST_COMMIT_MESSAGE" value="corrected dashboard permissions settings &#10;TODO: check with researches" />
-=======
     <MESSAGE value="role default creation by command. research/questions/answers saving to db after creation. &#10;TODO: check if ok (no frontend for it yet)" />
     <MESSAGE value="modal function on table row click" />
-    <option name="LAST_COMMIT_MESSAGE" value="modal function on table row click" />
->>>>>>> f10e04c73768e557f10804f84f6ee179f7e5dce1
+    <MESSAGE value="added ckeditor as text editor. Row click in table opens modal with more row data" />
+    <option name="LAST_COMMIT_MESSAGE" value="added ckeditor as text editor. Row click in table opens modal with more row data" />
   </component>
 </project>

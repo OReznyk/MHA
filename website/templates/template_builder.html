@@ -1,8 +1,8 @@
 {% extends "base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block styles %} {{super()}}
 
 
-<script src="sweetalert2.min.js"></script>
-<link rel="stylesheet" href="sweetalert2.min.css">
+<!-- <script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css"> -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src=" https://unpkg.com/sweetalert/dist/sweetalert.min.js "></script>
 
@@ -11,34 +11,174 @@
 
 <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+
+
+<!-- <script type="text/javascript" src="{{url_for('static', filename='cleditor/jquery.min.js')}}"></script> -->
+
 
 {% endblock %}
 
 
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+
 
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.4.0/css/bootstrap-rtl.css" rel="stylesheet" type="text/css" /> -->
 
-
-
-
-
 {% block main_content %}
+
 <h1> צור מחקר</h1>
 <div class="section2">
-    <div class="information information0">
+
+    <form id="regForm">
+
+        <!-- One "tab" for each step in the form: -->
+        <div class="tab tab_from">
+            <div class="information information0">
+                <h2>ההחלטה- כללי</h2>
+
+                <button type="button" class="btn btn-primary" id="subject"> נושא ההחלטה: </button>
+                <h1 class="subject" contenteditable='true'></h1>
+
+                <button type="button" class="btn btn-primary" id="category"> בחר קטגוריה: </button>
+
+                <span class="category"></span>
 
 
-        <label for="categorys">בחר קטגוריה מתאימה:</label>
-        <select id="categorys" name="categorys">
-            <option value="בריאות">בריאות</option>
-            <option value="פסיכולגיה">פסיכולגיה</option>
-            <option value="אבחנה">אבחנה</option>
-            <option value="תרופות הקלה">תרופות הקלה</option>
-          </select>
-    </div>
+
+                <br>
+                <button type="button" class="btn btn-primary" id="options"> אפשרויות להחלטה: </button>
+                <div class="options">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="tab tab_from">
+            <div class="information information1">
+                <h2> חלק א' - מידע</h2>
+                <br>
+                <p>יש להכניס מידע : כותרת , תמונה, סרטון וכו' בלחיצה על האלמנטים בצד ימין</p>
+
+            </div>
+
+
+
+        </div>
+
+        <div class="tab tab_from">
+
+            <div class="information information2">
+                <h2> חלק ב' - השוואת חלופות</h2>
+                <br>
+                <p>יש להכניס מידע : כותרת , תמונה, סרטון וכו' בלחיצה על האלמנטים בצד ימין</p>
+                <table class="table table-hover">
+                    <tr>
+                        <th contenteditable="true"></th>
+                        <th contenteditable="true">אפשרות א</th>
+                        <th contenteditable="true">אפשרות ב</th>
+                    </tr>
+                    <tr>
+                        <td contenteditable="true">יתרונות</td>
+                        <td contenteditable="true">לחץ לשינוי טקסט</td>
+                        <td contenteditable="true">לחץ לשינוי טקסט</td>
+                    </tr>
+                    <tr>
+                        <td contenteditable="true">חסרונות</td>
+                        <td contenteditable="true">לחץ לשינוי טקסט</td>
+                        <td contenteditable="true">לחץ לשינוי טקסט</td>
+                    </tr>
+                </table>
+            </div>
+
+
+        </div>
+
+
+
+        <div class="tab tab_from">
+
+            <div class="information information3">
+                <h2>חלק ג' – דירוג חשיבות </h2>
+                <br>
+                <p>יש להכניס מידע של דירוג בלחיצה על האלמנט בצד ימין</p>
+
+
+            </div>
+
+
+        </div>
+
+        <!-- <div class="tab tab_from">
+            <div class="information information4">
+                <h2>חלק ד' – ההחלטה שלך </h2>
+                <br>
+                <div class="range-wrap">
+                    <h3 class="options1" contenteditable="true">שנה תוכן בלחיצה</h3>
+                    <input type="range" class="range" min="1" max="10">
+                    <output class="bubble"></output>
+                </div>
+                <br><br><br>
+                <div class="range-wrap">
+                    <h3 class="options2" contenteditable="true">שנה תוכן בלחיצה</h3>
+                    <input type="range" class="range" min="1" max="10">
+                    <output class="bubble"></output>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="tab tab_from">
+
+            <div class="information information5">
+                <h2>חלק ה' – בחן את עצמך </h2>
+                <br>
+
+
+
+
+            </div>
+
+
+        </div>
+
+        <div class="tab tab_from">
+
+            <div class="information information6">
+                <h2>חלק ו' – בדיקת מוכנות לקבלת ההחלטה </h2>
+                <br>
+
+
+
+
+            </div>
+
+
+        </div>
+        <!-- <div style="overflow:auto;"> -->
+
+
+        <div class="nextPrev">
+            <button type="button" id="prevBtn" onclick="nextPrev(-1)">&lt; הקודם</button>
+            <button type="button" id="nextBtn" onclick="nextPrev(1)"> הבא &gt;</button>
+        </div>
+
+
+
+        <!-- Circles which indicates the steps of the form: -->
+        <div class="steps">
+            <span class="step">1</span>
+            <span class="step">2</span>
+            <span class="step">3</span>
+            <span class="step">4</span>
+            <span class="step">5</span>
+            <span class="step">6</span>
+            <span class="step">7</span>
+
+
+        </div>
+
+    </form>
 </div>
 
 
@@ -51,7 +191,9 @@
     <button type="button" class="btn btn-primary" id="image">  תמונה</button>
     <button type="button" class="btn btn-primary" id="url">  סרטון</button>
     <button type="button" class="btn btn-primary" id="question-radio">  שאלת בחירה</button>
-
+    <button type="button" class="btn btn-primary" id="range">  דירוג חשיבות</button>
+    <button type="button" class="btn btn-primary" id="yes_no">  שאלת כן/לא</button>
+    <button type="button" class="btn btn-primary" id="table"> טבלה</button>
 
 
 </div>
