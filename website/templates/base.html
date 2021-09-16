@@ -6,9 +6,7 @@
 
 <!-- this script is for text editor from https://ckeditor.com/docs/ckeditor5/latest/builds/guides/quick-start.html -->
 <script src="https://cdn.ckeditor.com/ckeditor5/29.2.0/classic/ckeditor.js"></script>
-<script type="text/javascript">
-    CKEDITOR.replace('editor')
-</script>
+<script type="text/javascript"> CKEDITOR.replace('editor')</script>
 
 {% endblock %} {% block navbar %}
 <!-- <link rel="stylesheet" href="//cdn.rawgit.com/morteza/bootstrap-rtl/v3.3.4/dist/css/bootstrap-rtl.min.css"> -->
@@ -83,7 +81,6 @@
                 <h1>
 
                     מערכת תומכת המסייעת בקבלת החלטות </h1>
-                <img src="../static/img/mha2.jpg" class="img_top img-responsive" alt="">
                 <p> תודה על הצטרפות למחקר
                     <br> על מנת לראות את השאלון שלך יש להירשם / להיכנס למערכת
                     <br> אנו מקווים שתפיקו את המירב במערכת
@@ -98,7 +95,6 @@
             {% block sidebar_add_content %}{% endblock %} {% block sidebar_content %}
             <a href="{{ url_for('views.dashboard') }}">דף הבית</a>
             <a href="{{ url_for('views.about') }}">MHA אודות</a>
-            <a href="https://www.ariel.ac.il/wp/" target="_blank">אונברסיטת אריאל</a>
             <a href="{{ url_for('views.contact') }}">צור קשר</a> {% endblock %}
         </div>
 
@@ -110,22 +106,22 @@
     .main .img_main {
         width: 75%;
     }
-    
+
     .main .img_top {
         width: 20%;
         float: left;
     }
-    
+
     .main p {
         font-size: 15px;
         line-height: 1.5;
         margin-bottom: 30px;
     }
-    
+
     .navbar-brand {
         float: none;
     }
-    
+
     .navbar .navbar-brand .logo {
         display: inline-block !important;
         margin-left: 14px;

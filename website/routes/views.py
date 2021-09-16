@@ -208,10 +208,27 @@ def profile():
         flash('משתמש לא מחובר', 'error')
         return redirect(url_for('auth.login'))
 
-'''
-def delete_user():
-    if "user" in session:
-        User.query.filter_by(id=session["user"].id).delete()
-        flash ('משתמש נמחק בהצלחה', 'success')
-        return redirect(url_for("view/home"))
-'''
+
+@views.route('/research', methods=['GET', 'POST'])
+@login_required
+def research():
+    form = ResearchForm()
+    if form.validate_on_submit():
+        r = Research(title=form.title.data, content=form.content.data)
+        if form.publish.validate(form):
+            if str(current_user.permission) != 'חוקר':
+                r.waiting_to_approval = True
+            elif current_user.permission_confirmation and str(current_user.permission) == 'חוקר':
+                r.approved = True
+        db.session.add(r)
+        db.session.commit()
+        role = Role.query.filter_by(role='מחבר').first()
+        p = Participants(research_id=r.id, participant_id=current_user.id, role_id=role.id)
+        db.session.add(p)
+        db.session.commit()
+        role.participant.append(p)
+        db.session.add(role)
+        db.session.commit()
+        if form.new_questioner.validate(form):
+            return redirect(url_for("views.builder"))
+    return render_template("new_research.html", form=form)

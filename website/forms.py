@@ -79,9 +79,10 @@ class BasicForm(FlaskForm):
 
 class ResearchForm(FlaskForm):
     title = StringField('כותרת', validators=[InputRequired(), Length(min=2, max=500)])
-    content = TextAreaField('תוכן', validators=[InputRequired(), Length(min=5, max=250000)])
+    content = TextAreaField('תוכן')
+    new_questioner = SubmitField('הוספת שאלון')
     save = SubmitField('שמירה')
-    publish = SubmitField('פירסום')
+    publish = SubmitField('פרסום')
 
 
 class QuestionForm(FlaskForm):
@@ -89,7 +90,7 @@ class QuestionForm(FlaskForm):
     question = StringField('שאלה', validators=[InputRequired(), Length(min=2, max=250)])
     weight = FloatField('משקל %', validators=[InputRequired(), Length(min=2, max=150)])
     type = SelectField(u'סוג שאלה', choices=questionsTypesList)
-    place = IntegerField('rating', validators=[InputRequired(), NumberRange(min=0, max=500)])
+    place = IntegerField('מיקום', validators=[InputRequired(), NumberRange(min=0, max=500)])
 
 
 class AnswerForm(FlaskForm):

@@ -3,7 +3,6 @@ from sqlalchemy.orm import backref
 
 
 class Participants(db.Model):
-    id = db.Column("id", db.Integer, primary_key=True)
     research_id = db.Column('research_id', db.Integer, db.ForeignKey('research.id'), primary_key=True)
     participant_id = db.Column('participant_id', db.Integer, db.ForeignKey('user.id'), primary_key=True)
 
