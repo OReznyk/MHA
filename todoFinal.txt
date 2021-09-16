@@ -1,0 +1,9 @@
+TODO:
+
+	+ templates frontend & backend
+	+ user func as: delete, create unknown user, approve research/ user permissions for
+	+ 
+
+
+    + get data from frontend
+    + on each row click do
